@@ -98,8 +98,14 @@ body{
 .font-20{
 	font-size: 0.2667rem;
 }
+.font-22{
+	font-size: 0.293333rem;
+}
 .font-24{
 	font-size:0.32rem;
+}
+.font-26{
+	font-size: 0.346667rem;
 }
 .font-28{
 	font-size:0.37333rem;
@@ -107,11 +113,17 @@ body{
 .font-30{
 	font-size:0.4rem;
 }
+.font-32{
+	font-size: 0.426667rem;
+}
 .color-grey{
 	color:#666666;
 }
 .color-blue{
 	color: #1E8FCF;
+}
+.color-lightblue{
+	color: #48B4FF;
 }
 .color-white{
 	color:#fff;
@@ -159,6 +171,16 @@ body{
 	background: #4CB5FF;
 	border-radius: 0.6rem;
 }
+.check-grey{
+	background: url('../img/page5/right.png');
+}
+.check-green{
+	background: url('../img/page5/bigo.png');
+	
+}
+.bg-orange{
+	background: #F37765;
+}
 /*图片路径*/
 .mui-bar.mui-bar-nav .title.mui-pull-left.bg-black{
 	background: url('../img/page2/return2.png');
@@ -169,5 +191,5 @@ body{
 	background:#38ADFF;
 }
 .bg-grey{
-	background:#F4F4F4;
+	background:#E5E5E5;
 }
