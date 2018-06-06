@@ -136,7 +136,7 @@ h1,h2,h3,h4,h5{
 }
 .page1.mui-content .cont-bottom .outer .inner .inner-intro{
 	font-size: 0.32rem;
-	width: 1.92rem;
+	/*width: 1.92rem;*/
 	color: #1E8FCF;
 	text-align: center;
 	display: inline-block;
@@ -148,7 +148,7 @@ h1,h2,h3,h4,h5{
 	margin: 0.53rem auto 0;
 }
 .page1.mui-content .cont-footer .footer-inner{
-	padding: 0 0.77rem;
+	/*padding: 0 0.77rem;*/
 }
 .page1.mui-content .cont-footer .footer-inner .inci{
 	width: 0.64rem;
