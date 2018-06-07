@@ -5,6 +5,7 @@ body{
 }
 /*标题样式*/
 .mui-bar.mui-bar-nav{
+	box-shadow: none;
 	text-align: center;
 	line-height: 1.173rem;
 	top: 0;
@@ -39,7 +40,8 @@ body{
 	font-size: 0.48rem;
 	font-weight: bolder;
 	font-family: '微软雅黑';
-	vertical-align: middle;
+	line-height: 1.173333rem;
+	margin-top: -0.07rem;
 }
 .mui-bar.mui-bar-nav strong{
 	margin-left: 0.24rem;
