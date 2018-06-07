@@ -6,37 +6,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">  
     </head>  
     <body>  
-   <canvas id="canvasCemara" width="500" height="500"></canvas>
-<video autoplay="" id="video2" style="width:500px;height:500px;"></video>
-<button id="btn">拍摄</button>
+		<input type="file" accept="image/*" capture="camera" id="uploadImg" />
+		<img id="userlogo" src=""  class="am-fl"  onerror="this.src='static/img/page1/acci2.png'"/>
+		
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			// 上传头像
+	$('#uploadImg').change(function() {
+		var objUrl = getObjectURL(this.files[0]);
+			//console.log("objUrl=" + objUrl);
+			if(objUrl) {
+				$("#userlogo").attr("src", objUrl);
+			}
+			// 图片地址
+			console.log(objUrl)
+	})
 
-    <script type="text/javascript">  
-        var video = document.getElementById('video2');
-var constraints = {audio: false, video: true};
- function successCallback(stream) {
-     video.srcObject = stream;
-     video.play();
- }
- function errorCallback(error) {
-     console.log("navigator.getUserMedia error: ", error);
-     $(".CameraTips").show();
- }
-
- navigator.mediaDevices.getUserMedia(constraints)
-     .then(successCallback)
-     .catch(errorCallback);
-
-document.getElementById("btn").addEventListener("click", function () {
-    var video = document.getElementById('video2');
-    canvas = document.getElementById('canvasCemara');
-    ctx = canvas.getContext('2d');
-    var _w = 624, _h = 468;
-    if (video.videoWidth > 0) _h = video.videoHeight / (video.videoWidth / _w);
-    canvas.setAttribute('width', _w);
-    canvas.setAttribute('height', _h);
-    ctx.fillRect(0, 0, _w, _h);
-    ctx.drawImage(video, 0, 0, _w, _h);
-});
-    </script>  
+	//建立一個可存取到該file的url  
+	function getObjectURL(file) {
+		var url = '';
+		if(window.createObjectURL != undefined) {
+			url = window.createObjectURL(file);
+		} else if(window.URL != undefined) {
+			url = window.URL.createObjectURL(file);
+		} else if(window.webkitURL != undefined) {
+			url = window.webkitURL.createObjectURL(file);
+		}
+		return url;
+	}
+		</script>
     </body>  
     </html>
