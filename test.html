@@ -6,29 +6,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">  
     </head>  
     <body>  
-    <video id="video" autoplay=""style='width:640px;height:480px'></video>  
-    <button id="paizhao">拍照</button>   
-    <canvas id="canvas" width="640" height="480"></canvas>  
+   <canvas id="canvasCemara" width="500" height="500"></canvas>
+<video autoplay="" id="video2" style="width:500px;height:500px;"></video>
+<button id="btn">拍摄</button>
+
     <script type="text/javascript">  
-        var video=document.getElementById("video");  
-        var context=canvas.getContext("2d");  
-        var errocb=function(){  
-            console.log("sth srong");  
-        }  
-        if(navigator.getUserMedia){  
-            navigator.getUserMedia({"video":true},function(stream){  
-                video.src=stream;  
-                video.play();  
-            },errocb);  
-        }else if(navigator.webkitGetUserMedia){  
-            navigator.webkitGetUserMedia({"video":true},function(stream){  
-                video.src=window.webkitURL.createObjectURL(stream);  
-                video.play();  
-            },errocb);  
-        }  
-        document.getElementById("paizhao").addEventListener("click",function(){  
-            context.drawImage(video,0,0,640,480);  
-        });  
+        var video = document.getElementById('video2');
+var constraints = {audio: false, video: true};
+ function successCallback(stream) {
+     video.srcObject = stream;
+     video.play();
+ }
+ function errorCallback(error) {
+     console.log("navigator.getUserMedia error: ", error);
+     $(".CameraTips").show();
+ }
+
+ navigator.mediaDevices.getUserMedia(constraints)
+     .then(successCallback)
+     .catch(errorCallback);
+
+document.getElementById("btn").addEventListener("click", function () {
+    var video = document.getElementById('video2');
+    canvas = document.getElementById('canvasCemara');
+    ctx = canvas.getContext('2d');
+    var _w = 624, _h = 468;
+    if (video.videoWidth > 0) _h = video.videoHeight / (video.videoWidth / _w);
+    canvas.setAttribute('width', _w);
+    canvas.setAttribute('height', _h);
+    ctx.fillRect(0, 0, _w, _h);
+    ctx.drawImage(video, 0, 0, _w, _h);
+});
     </script>  
     </body>  
     </html>
