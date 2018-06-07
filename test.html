@@ -1,0 +1,39 @@
+<!DOCTYPE html>  
+    <html>  
+    <head>  
+        <title>html5调用摄像头实现拍照</title>  
+        <meta charset="utf-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+    </head>  
+    <body>  
+		<input type="file" accept="image/*" capture="camera" id="uploadImg" />
+		<img id="userlogo" src=""  class="am-fl"  onerror="this.src='static/img/page1/acci2.png'"/>
+		
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			// 上传头像
+	$('#uploadImg').change(function() {
+		var objUrl = getObjectURL(this.files[0]);
+			//console.log("objUrl=" + objUrl);
+			if(objUrl) {
+				$("#userlogo").attr("src", objUrl);
+			}
+			// 图片地址
+			console.log(objUrl)
+	})
+
+	//建立一個可存取到該file的url  
+	function getObjectURL(file) {
+		var url = '';
+		if(window.createObjectURL != undefined) {
+			url = window.createObjectURL(file);
+		} else if(window.URL != undefined) {
+			url = window.URL.createObjectURL(file);
+		} else if(window.webkitURL != undefined) {
+			url = window.webkitURL.createObjectURL(file);
+		}
+		return url;
+	}
+		</script>
+    </body>  
+    </html>
