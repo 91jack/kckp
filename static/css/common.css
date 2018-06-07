@@ -17,8 +17,8 @@ body{
 	font-size: 0.48rem;
 	overflow: hidden;
 }
-.mui-bar.mui-bar-nav{
-	/*border: none;*/
+.mui-bar.mui-bar-nav .mui-title.color-black{
+	margin-top: 0.0051rem;
 }
 .mui-bar.mui-bar-nav:after{
 	height: 0;
@@ -133,6 +133,12 @@ body{
 }
 .color-66{
 	color: #666;
+}
+.color-cc{
+	color: #ccc;
+}
+.color-b3{
+	color: #b3b3b3;
 }
 .color-99{
 	color: #999;

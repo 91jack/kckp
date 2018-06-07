@@ -160,7 +160,7 @@ a:hover{
 	width: 5.6rem;
 	height: 0.8rem;
 	background: #fff;
-	margin: 0.53rem auto 0;
+	margin: 0.796667rem auto 0;
 	text-align: center;
 }
 .page1.mui-content .cont-footer .footer-inner{
@@ -225,7 +225,7 @@ a:hover{
 .page3.content{
 	overflow: hidden;
 }
-.page3 .color-orenge.font-28{
+.page3 .color-orange.font-28{
 	padding: 0.46667rem 0 0 0.56rem;
 }
 .page3 .mui-table-view .mui-table-view-cell{
@@ -491,6 +491,128 @@ a:hover{
 	position: fixed;
 	bottom: 0.73rem;
 	left: 2.33333rem;
+}
+.page5-modal-time{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.1);
+}
+.page5-modal-choose{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 4.72rem;
+	background: #fff;
+}
+.modal-top{
+	padding: 0 0.77333rem 0 0.73333rem;
+	border-bottom: 1px solid #f4f4f4;
+	height: 1.066667rem;
+	line-height: 1.06667rem;
+}
+.page5-modal-time .page5-modal-choose .modal-detail{
+	padding-left: 30%;
+}	
+.page5-modal-time .page5-modal-choose .modal-detail ul{
+	text-align: center;
+	float: left;
+	width: 20%;
+	margin: 0.4666666667rem 0;
+}
+.page5-modal-time .page5-modal-choose .modal-detail ul:first-child{
+	position: relative;
+}
+.page5-modal-time .page5-modal-choose .modal-detail ul:first-child:after{
+	content: ':';
+	position: absolute;
+	top: 50%;
+	right: 0;
+	height: 0.52rem;
+	margin-top: -0.356rem;
+	width: 1px;
+	color: #000;
+}
+.page5-modal-time .page5-modal-choose .modal-detail ul li{
+	font-size: 0.4rem;
+	width: 100%;
+	height: 0.9333333rem;
+	line-height: 0.933333rem;
+}
+.page5-modal-time li.active{
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.page5-weather-time{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.1);
+}
+.page5-weather-time .page5-modal-choose{
+	height: 6.706667rem;
+}
+.page5-weather-time ul{
+	margin-top: 0.4666666667rem;
+}
+.page5-weather-time ul li{
+	margin: 0;
+	padding: 0;
+	height: 0.93333rem;
+	line-height: 0.933333rem;
+	text-align: center;
+	width: 100%;
+}
+.page5-weather-time .page5-modal-choose .modal-detail ul li.active.color-33{
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+}
+.page5-modal-time,
+.page5-weather-time{
+	display: none;
+}
+/*page5-1*/
+.page5-1.content #map{
+	height: 12.3466667rem;
+}
+.page5-1.content .info{
+	border-bottom: 1px solid #f4f4f4;
+}
+.page5-1.content .info .adreess{
+	padding-left: 0.5333rem;
+	line-height: 1.33333rem;
+	height: 1.33333rem;
+}
+.page5-1.content .info .adreess>span{
+	display: inline-block;
+	width: 6.3466667rem;
+	text-align: center;
+}
+.page5-1.content .info .adreess .mui-pull-right{
+	background: url('../img/page5/next.png');
+	width: 0.226667rem;
+	height: 0.4rem;
+	background-size: 100% 100%;
+	margin: 0.43667rem 0.283333rem 0 0;
+}
+.page5-1.content .map-btn{
+	height: 2.4rem;
+	padding: 0.24rem 0.32rem;
+	line-height: 2.4rem;
+}
+.page5-1.content .map-btn p{
+	display: inline-block;
+	width: 100%;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	box-shadow:0px 0px 2px rgba(56,173,255,0.2);
+	text-align: center;
+	background: #38ADFF;
 }
 
 
@@ -992,4 +1114,100 @@ a:hover{
 	border: none;
 	height: 1.06667rem;
 	width: 48.5%;
+}
+
+
+/*page11*/
+.page11.page8-2.content .else ul li:nth-child(5){
+	position: relative;
+}
+.page11.page8-2.content .else ul li:nth-child(5)>img:first-child{
+	position: absolute;
+	height: 0.53333333rem;
+	width: 0.053333rem;
+	top: 50%;
+	left: -0.246666rem;
+	margin-top: -0.286666rem;
+}
+.page11.page8-2.content .else ul li:nth-child(5)>span{
+	margin-left: 0.13333rem;
+}
+.page11.page8-2.content .else ul li:nth-child(5)>img.next{
+	width: 0.226667rem;
+	height: 0.4rem;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	margin-right: 0.32rem;
+	margin-top: -0.2rem;
+	vertical-align: middle;
+}
+.page11.page8-2.content .else ul li:nth-child(5)>p{
+	padding-right: 0.84rem;
+}
+.page11.page8-2.content .else ul li.responsibility{
+	text-align: center;
+	display: inline-block;
+	height: 1.33333rem;
+	line-height: 1.33333rem;
+	width: 2.13333rem;
+}
+.page11.page8-2.content .else ul li.responsibility span{
+	background: #F43C3C;
+	text-align: center;
+	display: inline-block;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	width: 2.13333rem;
+	background: #F43C3C;
+	border-radius: 0.1066667rem;
+	color: #fff;
+	font-size: 0.4rem;
+}
+.page11.page8-2.content .else ul li.responsibility.none span{
+	background: #38ADFF;
+}
+.page11 .btn-grey.over{
+	position: fixed;
+}
+
+
+/*page12*/
+.page12 .top-info{
+	height: 3.46667rem;
+}
+.page12 .top-info .msg{
+	margin-top: 0.16rem;
+}
+.page12 .top-info .msg li{
+	width: 5.4rem;
+	font-size: 0.373333rem;
+	height: 0.773333rem;
+	line-height: 0.773333rem;
+	color: #333;
+}
+.page12 .page11.page8-2.content .else li div.validation{
+	background: #38ADFF;
+	text-align: center;
+	display: inline-block;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	width: 2.13333rem;
+	border-radius: 0.1066667rem;
+	color: #fff;
+	font-size: 0.32rem;
+	margin-right: 0.33333rem;
+	margin-top: 0.216667rem;
+}
+.page12 .page11.page8-2.content .else li input{
+	border: none;
+	width: 3.8rem;
+	margin-left: 0.8rem;
+	text-align: right;
+}
+.page12 .page11.page8-2.content .else li:nth-child(5) span.font-30.color-33{
+	margin-left:  0;
+}
+.page12 .page11.page8-2.content .btn-grey.over{
+	background: #E7E7E7;
 }
