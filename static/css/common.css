@@ -94,6 +94,41 @@ body{
 	font-weight: none;
 }
 
+/*选项卡*/
+.tab{
+	/*z-index: 4;
+	position: fixed;
+	top: 0;
+	left: 0;*/
+	height: 1.33333rem;
+	line-height: 1.33333rem;
+	text-align: center;
+	width: 100%;
+	background: #fff;
+	border-bottom: 1px solid #f4f4f4;
+}
+.tab a{
+	float: left;
+	display: inline-block;
+	height: 1.33333rem;
+	width: 50%;
+	font-size: 0.4rem;
+	color: #333;
+	position: relative;
+}
+.tab a:hover{
+	color: #333;
+}
+.tab a.active:after{
+	content: '';
+	position: absolute;
+	width: 0.8rem;
+	height: 0.08rem;
+	bottom: 0;
+	left: 50%;
+	margin-left: -0.4rem;
+	background: #48B4FF;
+}
 /*字体样式*/
 .font-20{
 	font-size: 0.2667rem;
@@ -109,7 +144,7 @@ body{
 }
 .font-28{
 	font-size:0.37333rem;
-};
+}
 .font-30{
 	font-size:0.4rem;
 }
@@ -127,6 +162,9 @@ body{
 }
 .color-white{
 	color:#fff;
+}
+.color-red{
+	color:#F56954;
 }
 .color-33{
 	color: #333;
@@ -177,10 +215,10 @@ body{
 	background: #4CB5FF;
 	border-radius: 0.6rem;
 }
-.check-grey{
+.check{
 	background: url('../img/page5/right.png');
 }
-.check-green{
+.check.active{
 	background: url('../img/page5/bigo.png');
 	
 }
@@ -198,4 +236,64 @@ body{
 }
 .bg-grey{
 	background:#E5E5E5;
+}
+::-webkit-input-placeholder{
+	color: #ccc;
+}
+::-moz-placeholder{
+	color: #ccc;
+}
+::-ms-input-placeholder{
+	color: #ccc;
+}
+
+.del-modal{
+	z-index: 20;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.2);
+}
+.del-modal .axu{
+	overflow: hidden;
+	width: 7.2rem;
+	height: 3.33333rem;
+	background: #fff;
+	border-radius: 0.53333rem;
+	margin: auto;
+	margin-top: 6.973333rem;
+}
+.del-modal .axu p{
+	text-align: center;
+	height: 2.2533333rem;
+	line-height: 2.253333rem;
+	color: #1A1A1A;
+	font-size: 0.4rem;
+	border-bottom: 1px solid #D9D9D9;
+}
+.del-modal .axu span{
+	height: 1.066667rem;
+	line-height: 1.066667rem;
+	text-align: center;
+	float: left;
+	width: 3.6rem;
+	font-size: 0.4rem;
+	color: #3E454F;
+}
+.del-modal .axu span.active{
+	color: #5F9AFE;
+}
+.del-modal .axu>span:last-child{
+	position: relative;
+}
+.del-modal .axu>span:last-child:before{
+	content: '';
+	position: absolute;
+	width: 1px;
+	height: 1.066667rem;
+	background: #D9D9D9;
+	top: 0;
+	left: 0;
 }

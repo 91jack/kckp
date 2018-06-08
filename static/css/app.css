@@ -324,6 +324,14 @@ a:hover{
 }
 
 /*page5*/
+.page5-height .btn-blue{
+	position: fixed;
+	bottom: 0.733333rem;
+	left: 2.3333rem;
+}
+.page5.content{
+	margin-bottom: 0.8rem;
+}
 .page5.content .info li{
 	border-bottom: 0.0133333rem solid #ccc;
 	box-sizing: border-box;
@@ -885,6 +893,43 @@ a:hover{
 	line-height: 1.08rem;
 	display: inline-block;
 }
+.page8-1.del-modal .axu{
+	height: 6.506667rem;
+	padding-top:0.36rem;
+}
+.page8-1.del-modal .axu p{
+	color: #48B4FF;
+	height: 0.3466667rem;
+	line-height: 0.346667rem;
+	margin-bottom: 0.36rem;
+	border-bottom: none;
+	font-size: 0.346667rem;
+}
+.page8-1.del-modal .axu h3{
+	font-size: 0.346667rem;
+	margin-left: 0.6rem;
+	color: #333;
+	margin-bottom: 0.226667rem;
+}
+.page8-1.del-modal .axu img{
+	display:block;
+	margin: auto;
+	width: 5.973333rem;
+	height: 3.453333rem;
+	margin-bottom: 0.293333rem;
+}
+.page8-1.del-modal .axu>span:last-child:before{
+	top: 0;
+}
+.page8-1.del-modal .axu>span:last-child:after{
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 7.2rem;
+	height: 1px;
+	background: #D9D9D9;
+}
 
 
 
@@ -1164,6 +1209,20 @@ a:hover{
 	color: #fff;
 	font-size: 0.4rem;
 }
+.page11.page8-2.content .else.difer{
+	height: 2.26667rem;t
+	line-height: 2.26667rem;
+}
+.page11.page8-2.content .else.difer p{
+	width: 6.7066666rem;
+	line-height: 0.466667rem;
+	margin-right: 0.73333rem;
+	margin-top: 0.36rem;
+}
+.page11.page8-2.content .else.difer span,
+.page11.page8-2.content .else.difer img{
+	vertical-align: top;
+}
 .page11.page8-2.content .else ul li.responsibility.none span{
 	background: #38ADFF;
 }
@@ -1210,4 +1269,389 @@ a:hover{
 }
 .page12 .page11.page8-2.content .btn-grey.over{
 	background: #E7E7E7;
+}
+
+
+
+/*page13*/
+.page13 .btn-grey.over{
+	position: fixed;
+	left: 0;
+	width: 100%;
+	background: #fff;
+	margin: 0;
+	padding: 0;
+}
+.page13 #item1,
+.page13 #item2{
+	margin-bottom: 2rem;
+}
+/*.page13 #item1{
+	margin-top:2.56rem;
+}*/
+.page13 #item2 .else li:first-child span{
+	margin-left: 0;
+}
+.page13 #item2 .accident-picture{
+	padding: 0.133333rem 0.32rem;
+	background: #fff;
+}
+.page13 #item2 .accident-picture li{
+	width: 9.36rem;
+	height: 4.8rem;
+	background: #E4E0E0;
+	margin-bottom: 0.266667rem;
+}
+.page13 #item2 .accident-picture li:last-child{
+	margin-bottom: 0;
+}
+.page13 .btn-grey.over a{
+	background: #38ADFF;
+	display: inline-block;
+	float: left;
+	height: 1.2rem;
+	width: 3.73333rem;
+	border-radius: 0.6rem;
+	font-size: 0.4rem;
+}
+.page13 .btn-grey.over a:first-child{
+	margin-left: 0.933333rem;
+}
+.page13 .btn-grey.over a:nth-child(2){
+	margin-left: 0.666667rem;
+}
+.page13 #double{
+	background: none;
+}
+/*page14*/
+.page14 #item3 .else,
+.page14 #item4 .else{
+	margin-top: 0.2666667rem;
+	width: 100%;
+	padding-left: 0;
+}
+.page14 #item3 .else ul,
+.page14 #item4 .else ul{
+	padding: 0 0.4rem;
+}
+.page14 #item3 .else ul li,
+.page14 #item4 .else ul li{
+	border: none;
+	font-size: 0.32rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	padding-bottom: 0.4rem;
+	color: #333;
+}
+.page14 #item3 .else ul li:first-child>span:first-child,
+.page14 #item4 .else ul li:first-child>span:first-child{
+	margin-left: 0;
+}
+/*.page14 #item3 .else ul li:first-child>span:last-child{
+	margin-left: 1rem;
+}*/
+.page14 #item3 .else ul li:last-child,
+.page14 #item4 .else ul li:last-child{
+	padding-bottom: 0;
+}
+.page14 #item4 .else{
+	position: relative;
+}
+.page14 #item4 .else img{
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	top: 0.6rem;
+	right: 1.066666rem;
+}
+
+
+
+
+
+/*login*/
+.login.content{
+	width: 100%;
+}
+.login.content .user-info{
+	width: 100%;
+	height: 5.33333rem;
+	background: #fff;
+	text-align: center;
+}
+.login.content .user-info .top{
+	margin-top: 0.73rem;
+	display: inline-block;
+	width: 2.133333rem;
+	height: 2.133333rem;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.login.content .user-info .top img{
+	display: inline-block;
+	width: 2.133333rem;
+	height: 2.133333rem;
+}
+.login.content .user-info .bottom{
+	margin-top: 0.52rem;
+}
+.login.content .user-info .bottom strong{
+	font-weight: none;
+	color: #38ADFF;
+}
+.login.content .else{
+	background: #fff;
+	margin-top: 0.26667rem;
+}
+.login.content .else li{
+	height: 1.3333rem;
+	line-height: 1.3333rem;
+	border-bottom: 1px solid #F4F4F4;
+}
+.login.content .else li:last-child{
+	border-bottom: none;
+}
+.login.content .else li>span:first-child{
+	margin-left: 0.4rem;
+}
+.login.content .else li>span:last-child{
+	margin-right: 0.33333rem;
+}
+.login.content .else li img{
+	margin-right: 0.266667rem;
+	margin-top: 0.466667rem;
+	width: 0.2266667rem;
+	height: 0.4rem;
+}
+/*login_1*/
+.login-1 .login-1-photo{
+	width: 100%;
+	height: 6rem;
+	text-align: center;
+	background: #fff;
+	padding: 0.373333rem 0.533333rem;
+}
+.login-1 .login-1-photo>span{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.33333rem;
+	line-height: 0.33333rem;
+	background: url('../img/page9/know.png');
+	background-size: 100% 100%;
+	font-size: 0.24rem;
+	text-align: center;
+}
+.login-1 .login-1-photo>p{
+	display: inline-block;
+	line-height: 0.32rem;
+}
+.login-1 .login-1-photo .take-pic{
+	width: 8.826666rem;
+	height: 4.666667rem;
+	border: 1px solid #f4f4f4;
+	border-radius: 0.106667rem;
+	text-align: center;
+	position: relative;
+}
+.login-1 .login-1-photo .take-pic .take-pho{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -0.4rem;
+	margin-top: -0.15rem;
+	width: 0.8rem;
+	height: 0.72rem;
+}
+.login-1 .login-1-photo .take-pic img{
+	margin-top: 0.15rem;
+	width: 5.97333rem;
+	height: 3.453333rem;
+}
+.login-1 .else ul{
+	padding-left: 0.4rem;
+}
+.login-1 .else ul li span{
+	font-size: 0.4rem;
+}
+.login-1.login.content .else li>span:first-child{
+	margin-left: 0;
+}
+.login-1 .else ul li input{
+	margin-top: 0.4666667rem;
+	margin-right: 0.373333rem;
+	font-size: 0.4rem;
+	float: right;
+	outline: none;
+	border: none;
+	text-align: right;
+}
+.login-1 .else ul li:first-child input{
+	width: 30%;
+}
+.login-1 .else ul li .number-choose{
+	text-align: right;
+	font-size: 0.4rem;
+}
+.login-1 .else ul li .number-choose img{
+	width: 0.4rem;
+	height: 0.226667rem;
+	margin-left: 0.3rem;
+}
+.login-1 .else ul li div{
+	font-size: 0.32rem;
+	text-align: center;
+	background: #38ADFF;
+	color: #fff;
+	height: 0.8rem;
+	width: 2.13333rem;
+	line-height: 0.8rem;
+	margin-top: 0.266667rem;
+	margin-right: 0.33333rem;
+	border-radius: 0.1066667rem;
+}
+.login-1-2.login-1 .else{
+	margin-top: 0;
+	border-top: 1px solid #f5f5f5;
+}
+.login-1-2.login-1 .else ul li div{
+	margin-top: 0.1rem;
+	background: none;
+	width: 2.7rem;
+}
+.login-3 .else ul li:first-child input{
+	width: 50%;
+}
+.login-3 .btn-blue{
+	display: inline-block;
+	margin-left: 2.3333rem;
+	margin-top: 1.066667rem;
+}
+.else.login-2 ul li>span:nth-child(2){
+	margin-left: 0.2rem;
+}
+/*login-1-1-2*/
+/*.login-1-1-2.login.content.login-1-2-2 .else:nth-child(2)>li:first-child>span:last-child,
+.login-1-1-2.login.content.login-1-2-2 .else:nth-child(3)>li:first-child>span:last-child{
+	float: right;
+	text-align: right;
+}*/
+
+
+/*login-1-2-2*/
+.login.content.login-1-2-2 .else{
+	margin-top: 0;
+	border-bottom: 0.266667rem solid #F3F3F3;
+}
+.login.content.login-1-2-2 .else:first-child ul{
+	border-top: none;
+}
+.login.content.login-1-2-2 .else li:last-child{
+	height: 1.0666667rem;
+	line-height: 1.066667rem;
+}
+.login.content.login-1-2-2 .else li:last-child span:first-child{
+	display: inline-block;
+	width: 0.4rem;
+	height: 0.4rem;
+	margin-left: 0.4rem;
+	background-size: 100% 100%;
+}
+.login.content.login-1-2-2 .else li:last-child>div ul{
+	height: 1.0666667rem;
+}
+.login.content.login-1-2-2 .else li:last-child>div li{
+	line-height: 1.0666667rem;
+	float: left;
+	font-size: 0.32rem;
+	color: #333;
+}
+.login.content.login-1-2-2 .else li:last-child>div li img{
+	width: 0.32rem;
+	height: 0.32rem;
+	/*vertical-align: top;*/
+	margin-top: -0.08rem;
+}
+.login.content.login-1-2-2 .else li:last-child>div li:nth-child(2n){
+	margin: 0 0.2666667rem 0 0.186667rem;
+}
+.bg-white{
+	background: #fff;
+}
+ /*login-1-3-1*/
+.login.content.login-1.login-1-3-1 .else ul li:first-child input{
+	float: none;
+	text-align: left;
+}
+.login.content.login-1.login-1-3-1 .btn-blue{
+	margin-top: 1.066667rem;
+}
+
+
+/*login-2-1*/
+.login.content.login-2-1 .user-info{
+	width: 9.36rem;
+	margin: auto;
+	margin-top: 0.33333rem;
+	border: 1px solid #E5E5E5;
+}
+.login.content.login-2-1 .user-info textarea{
+	height: 100%;
+	color: #333;
+	border: none;
+	outline: none;
+	font-size: 0.373333rem;
+}
+.login.content.login-2-1>p{
+	text-align: right;
+	margin-top: 0.28rem;
+	margin-right: 0.32rem;
+}
+.login.content.login-2-1 .else.login-2 input{
+	border: none;
+	outline: none;
+	font-size: 0.373333rem;
+}
+.login.content.login-2-1 .btn-blue.sub{
+	position: none;
+	margin-top: 0.53333rem;
+}
+
+
+
+
+/*about-us*/
+.about-us .user-info{
+	height: 5.3333rem;
+	width: 9.96rem;
+	padding: 0.66667rem 0.73333rem 0.853333rem;
+}
+.login.content.about-us .user-info .top{
+	padding: 0;
+	margin: 0;
+	border-radius:0 ;
+	width: 1.6rem;
+	height: 1.6rem;
+}
+.login.content.about-us .user-info .top img{
+	border-radius: none;
+	width: 1.6rem;
+	height: 1.6rem;
+}
+.login.content.about-us .user-info>p{
+	margin-top: 0;
+	padding: 0;
+}
+.login.content.about-us .user-info .bottom{
+	margin-top: 0;
+}
+
+
+/*signature*/
+.signature.content{
+	height: 100%;
+}
+.signature.content .left{
+	height: 100%;
+	width: 1.33333rem;
+	border-right: 1px solid #ccc;
 }
