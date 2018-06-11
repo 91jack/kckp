@@ -53,9 +53,9 @@
 		    			高速/高架
 		    		</strong>
 		    		<span class="check active"></span>
-		    		<em class="font-30 color-33">是</em>
+		    		<em class="font-30 color-33" class="active" isExpressway='0'>是</em>
 		    		<span class="check"></span>
-		    		<em class="font-30 color-33">否</em>
+		    		<em class="font-30 color-33" isExpressway='1'>否</em>
 		    	</li>
 		    	<li id="demo5" data-options='{"type":"time"}'>
 		    		<strong class="color-33 font-30">
@@ -168,8 +168,62 @@
 		<script src="static/mui/js/mui.poppicker.js"></script>
 		<script src="static/mui/js/city.data.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/mui/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
-	    <script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//step5时间
+			(function($) {
+				$.init();
+				var result = $('#result')[0];
+				var btns = $('#demo5');
+				btns.each(function(i, btn) {
+					btn.addEventListener('tap', function() {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						var id = this.getAttribute('id');
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							result.innerText = rs.h.value+':'+rs.i.value;
+							picker.dispose();
+						});
+					}, false);
+				});
+			})(mui);
+			
+			//step5天气交互
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					var userPicker = new $.PopPicker();
+					userPicker.setData([{
+						value: 'q',
+						text: '晴'
+					}, {
+						value: 'sc',
+						text: '沙尘'
+					}, {
+						value: 'df',
+						text: '大风'
+					}, {
+						value: 'bb',
+						text: '冰雹'
+					}, {
+						value: 'x',
+						text: '雪'
+					}]);
+					var showUserPickerButton = doc.getElementById('weather');
+					var userResult = doc.getElementById('userResult');
+					showUserPickerButton.addEventListener('tap', function(event) {
+						userPicker.show(function(items) {
+							userResult.innerText = items[0].text;
+						});
+					}, false);
+				});
+			})(mui, document);
+		</script>
 	</body>
 
 </html>

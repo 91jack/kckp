@@ -106,9 +106,9 @@ $('#login').on('click',function(){
 	   		//服务器返回响应，根据响应结果，分析是否登录成功；
 			if(data.status == 2000){
 				console.log(data)
-				$.totalStorage('token',data.token);
-				$.totalStorage('accidentId',data.obj);
-				console.log($.totalStorage('token'));
+				window.localStorage.setItem('token',data.token);
+				window.localStorage.setItem('accidentId',data.obj);
+
 				window.location.href = 'step2.html';
 			}else{
 				console.log(data)
@@ -116,7 +116,7 @@ $('#login').on('click',function(){
 	    }
 	})	
 })
-
+//console.log(window.localStorage.getItem('token'));
 
 // step4.html 
 // 创建事故
@@ -131,7 +131,6 @@ $('#createAccident').on('click', function(){
 	   success: function(data){
 	   	console.log(data)
 	   	window.location.href = 'step5.html'
-	   	// 
 	   }
 	})
 	 
@@ -146,66 +145,19 @@ $('.page5.content .where span').click(function(){
 	if($(this).hasClass('active')){
 		$(this).siblings('span').addClass('active')
 		$(this).removeClass('active');
+		$(this).siblings('em').removeClass('active')
+		$(this).next('em').addClass('active')
 	}else{
 		$(this).siblings('span').removeClass('active')
 		$(this).addClass('active');
+		$(this).siblings('em').removeClass('active')
+		$(this).next('em').addClass('active')
 	}
 })
 $('#nowData').html(newData);
 $('#result').html(newTime);
 
-//step5时间
-(function($) {
-	$.init();
-	var result = $('#result')[0];
-	var btns = $('#demo5');
-	btns.each(function(i, btn) {
-		btn.addEventListener('tap', function() {
-			var optionsJson = this.getAttribute('data-options') || '{}';
-			var options = JSON.parse(optionsJson);
-			var id = this.getAttribute('id');
-			var picker = new $.DtPicker(options);
-			picker.show(function(rs) {
-				result.innerText = rs.h.value+':'+rs.i.value;
-				picker.dispose();
-			});
-		}, false);
-	});
-})(mui);
 
-//step5天气交互
-(function($, doc) {
-	$.init();
-	$.ready(function() {
-		var _getParam = function(obj, param) {
-			return obj[param] || '';
-		};
-		var userPicker = new $.PopPicker();
-		userPicker.setData([{
-			value: 'q',
-			text: '晴'
-		}, {
-			value: 'sc',
-			text: '沙尘'
-		}, {
-			value: 'df',
-			text: '大风'
-		}, {
-			value: 'bb',
-			text: '冰雹'
-		}, {
-			value: 'x',
-			text: '雪'
-		}]);
-		var showUserPickerButton = doc.getElementById('weather');
-		var userResult = doc.getElementById('userResult');
-		showUserPickerButton.addEventListener('tap', function(event) {
-			userPicker.show(function(items) {
-				userResult.innerText = items[0].text;
-			});
-		}, false);
-	});
-})(mui, document);
 
 
 //step5摄像头的调用
@@ -215,15 +167,20 @@ $('.takePhotos').click(function(){
 })
 
 //step5页面跳转
+
 $('#subpic').click(function(){
+	var isExpressway = $('.where em.active').attr('isExpressway');
+	var accidentId = $.totalStorage('accidentId');
+	var token = $.totalStorage('token');
+	var isExpressway = $('.where em.active').html();
 	$.ajax({
 	   type: "POST",
-	   url: createAccidentUrl,
+	   url: uploadImgUrl,
 	   data: {
 	   	type:'2',
 	   	token:'3661363439356430613064343464366539306566306664353466313962643034',
-//	   	accidentId
-//	   	address
+	   	accidentId:accidentId
+//	   	address:token
 //	   	address_xy
 //	   	isExpressway
 //	   	datetime
