@@ -23,6 +23,3 @@ $('.page5.content .where span').click(function(){
 })
 //摄像头
 
-//$('.page5.content .photos .box .picblue').click(function(){
-//
-//})
