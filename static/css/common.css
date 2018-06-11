@@ -7,6 +7,9 @@ body{
 #goback {
 	display: inline-block;
 	float:left;
+	cursor: pointer;
+	position: relative;
+	z-index: 10;
 }
 
 /*标题样式*/
