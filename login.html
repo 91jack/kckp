@@ -25,20 +25,19 @@
 		</div>
 		<script src="static/mui/js/mui.min.js"></script>
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-		<script src="static/js/common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 		// 获取验证码
 		//var getcode = document.getElementById("getcode")
 		$('#getcode').on('click',function(){
-			mui.ajax('http://192.168.1.34:8080/kyp/app/currencyController/getYzCode',{
+			$.ajax('http://192.168.1.34:8080/kyp/app/currencyController/getYzCode',{
 				data:{
 					phone:$('#phone').val(),
 					type:'4'
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'post',//HTTP请求类型
-				timeout:10000,//超时时间设置为10秒；
-				//headers:{'Content-Type':'application/json'},	              
+				timeout:10000,//超时时间设置为10秒；              
 				success:function(data){
 					//服务器返回响应，根据响应结果，分析是否登录成功；
 					if(data.status == 2000){
@@ -48,17 +47,13 @@
 						console.log(data)
 					}
 					
-				},
-				error:function(xhr,type,errorThrown){
-					//异常处理；
-					console.log(type);
 				}
 			});
 		})
 			
 		// 登录
 		$('#login').on('click',function(){
-				mui.ajax('http://192.168.1.34:8080/kyp/app/userController/login',{
+				$.ajax('http://192.168.1.34:8080/kyp/app/userController/login',{
 					data:{
 						loginType:'2',
 						phoneType:'2',
@@ -78,11 +73,8 @@
 							console.log(data)
 						}
 						
-					},
-					error:function(xhr,type,errorThrown){
-						//异常处理；
-						console.log(type);
 					}
+					
 				});
 			})
 			
