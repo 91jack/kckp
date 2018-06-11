@@ -13,7 +13,7 @@
 	<body class="page5-height">
 		<header class="mui-bar mui-bar-nav">
 		    <div class="title">
-		    	<a class="color-black" href="page4.html">
+		    	<a class="color-black" id="goback">
 		        	<span class="mui-pull-left title bg-black"></span>
 		        	<strong class="color-black mui-pull-left">返回</strong>
 		        </a>
@@ -42,7 +42,22 @@
 		</div>
 				    
 	    
-		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 百度地图API功能
+			var map = new BMap.Map("map");    // 创建Map实例
+			map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+			//添加地图类型控件
+			map.addControl(new BMap.MapTypeControl({
+				mapTypes:[
+		            BMAP_NORMAL_MAP,
+		            BMAP_HYBRID_MAP
+		        ]}));	  
+			map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+			map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+		</script>
 	</body>
 
 </html>

@@ -6,6 +6,8 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="static/mui/css/mui.min.css" rel="stylesheet" />
+		<link href="static/mui/css/app.css" rel="stylesheet" />
+		<link href="static/mui/css/mui.picker.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="static/css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="static/css/app.css"/>
 	</head>
@@ -13,7 +15,7 @@
 	<body class="page5-height">
 		<header class="mui-bar mui-bar-nav">
 		    <div class="title">
-		    	<a class="color-black" href="page4.html">
+		    	<a class="color-black" id="goback">
 		        	<span class="mui-pull-left title bg-black"></span>
 		        	<strong class="color-black mui-pull-left">返回</strong>
 		        </a>
@@ -37,12 +39,12 @@
 	
 		<div class="page5 content">
 		    <ul class="info">
-		    	<li class="adreess">
+		    	<li class="adreess" id="address">
 		    		<strong class="color-33 font-30">
 		    			事故地址
 		    		</strong>
 		    		<span class="color-33 font-30">重庆市渝北区金开大道</span>
-		    		<a href="">
+		    		<a>
 		    			<span class="mui-pull-right"></span>
 		    		</a>
 		    	</li>
@@ -55,21 +57,21 @@
 		    		<span class="check"></span>
 		    		<em class="font-30 color-33">否</em>
 		    	</li>
-		    	<li>
+		    	<li id="demo5" data-options='{"type":"time"}'>
 		    		<strong class="color-33 font-30">
 		    			高速/高架
 		    		</strong>
-		    		<span>
+		    		<span id="nowData">
 		    			2018-01-26
 		    		</span>
-		    		<span>11:08</span>
+					<div id='result' class="ui-alert"></div>
 		    	</li>
-		    	<li>
+		    	<li id="weather">
 		    		<strong class="color-33 font-30">
 		    			事故地址
 		    		</strong>
-		    		<span class="color-33 font-30">雨</span>
-		    		<a href="">
+					<div id='userResult' class="ui-alert color-33 font-30">雨</div>
+		    		<a>
 		    			<span class="mui-pull-right"></span>
 		    		</a>
 		    	</li>
@@ -81,9 +83,10 @@
 		    				<div class="ac-pic">
 			    				<img src="static/img/page5/twocar.png"/>
 			    			</div>
-			    			<img class="picblue" src="static/img/page5/camera.png"/>
+							<div class="picblue takePhotos">
+			    				<input type="file" name="" id="" value="" />
+							</div>
 			    			<img class="topright" src="static/img/page5/must.png"></img>
-			    			<input type="file" name="" id="" value="" />
 			    		</div>
 			    		<p class="font-30">侧前方</p>
 		    		</div>
@@ -92,9 +95,10 @@
 		    				<div class="ac-pic">
 			    				<img src="static/img/page5/middletwocar.png"/>
 			    			</div>
+			    			<div class="picblue takePhotos">
+			    				<input type="file" name="" id="" value="" />
+							</div>
 			    			<img class="topright" src="static/img/page5/must.png"></img>
-			    			<img class="picblue" src="static/img/page5/camera.png"/>
-			    			<input type="file" name="" id="" value="" />
 			    		</div>
 			    		<p class="font-30">侧前方</p>
 		    		</div>
@@ -105,9 +109,10 @@
 			    			<div class="ac-pic">
 			    				<img class="bigcars" src="static/img/page5/bigtwocar.png"/>
 			    			</div>
+			    			<div class="picblue takePhotos">
+			    				<input type="file" name="" id="" value="" />
+							</div>
 			    			<img class="topright" src="static/img/page5/must.png"></img>
-			    			<img class="picblue third" src="static/img/page5/camera.png"/>
-			    			<input type="file" name="" id="" value="" />
 			    		</div>
 			    		<p class="font-30">碰撞部位</p>
 		    		</div>
@@ -116,8 +121,10 @@
 		    				<div class="ac-pic">
 			    				<!--<img src="static/img/page5/middletwocar.png"/>-->
 			    			</div>
-			    			<img class="picblue" src="static/img/page5/camera2.png"/>
-			    			<input type="file" name="" id="" value="" />
+			    			<div class="picblue takePhotos addpicture">
+			    				<input type="file" name="" id="" value="" />
+							</div>
+			    			
 			    		</div>
 			    		<p class="font-30">补充照片1</p>
 		    		</div>
@@ -128,8 +135,9 @@
 		    				<div class="ac-pic">
 			    				<!--<img src="static/img/page5/middletwocar.png"/>-->
 			    			</div>
-			    			<img class="picblue" src="static/img/page5/camera2.png"/>
-			    			<input type="file" name="" id="" value="" />
+			    			<div class="picblue takePhotos addpicture">
+			    				<input type="file" name="" id="" value="" />
+							</div>
 			    		</div>
 			    		<p class="font-30">补充照片2</p>
 		    		</div>
@@ -138,61 +146,30 @@
 		    				<div class="ac-pic">
 			    				<!--<img src="static/img/page5/middletwocar.png"/>-->
 			    			</div>
-			    			<img class="picblue" src="static/img/page5/camera2.png"/>
-			    			<input type="file" name="" id="" value="" />
+			    			<div class="picblue takePhotos addpicture">
+			    				<input type="file" name="" id="" value="" />
+							</div>
 			    		</div>
 			    		<p class="font-30">补充照片3</p>
 		    		</div>
 		    	</li>
 		    </ul>
 		    
-			<div class="page5-modal-time">
-				<div class="page5-modal-choose">
-					<div class="modal-top">
-						<span class="color-66 font-28">取消</span>
-						<span class="mui-pull-right color-blue font-28">确定</span>
-					</div>
-					<div class="modal-detail">
-						<ul>
-							<li>00</li>
-							<li class="active">01</li>
-							<li>02</li>
-						</ul>
-						<ul>
-							<li>00</li>
-							<li class="active">01</li>
-							<li>02</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="page5-weather-time">
-				<div class="page5-modal-choose">
-					<div class="modal-top">
-						<span class="color-66 font-28">取消</span>
-						<span class="mui-pull-right color-blue font-28">确定</span>
-					</div>
-					<div class="modal-detail">
-						<ul>
-							<li class="color-99">00</li>
-							<li class="color-33 active">01</li>
-							<li class="color-99">02</li>
-							<li class="color-b3">03</li>
-							<li class="color-cc">04</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="btn-blue">
+		
+		<div class="btn-blue" id="subpic">
 			<a class="color-white font-30" href="page6.html">
 				提交照片
 			</a>
 		</div>
 				    
 	    <script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="static/mui/js/mui.min.js"></script>
+	    <script src="static/mui/js/mui.picker.min.js"></script>
+		<script src="static/mui/js/mui.poppicker.js"></script>
+		<script src="static/mui/js/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/mui/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 
 </html>

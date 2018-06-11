@@ -22,8 +22,22 @@ h1,h2,h3,h4,h5{
 a:hover{
 	color: #fff;
 }
-
-
+#demo5{
+	position: relative;
+}
+#result{
+	position: absolute;
+	right: 2.88rem;
+	bottom: 0;
+}
+#weather{
+	position: relative;
+}
+#userResult{
+	position: absolute;
+	top: 0;
+	left: 2.626667rem;
+}
 /*page1*/
 .home-bg{
 	background: url('../img/page1/indexbg.png');
@@ -485,11 +499,21 @@ a:hover{
 	width: 2.52rem;
 	height: 2.186rem;
 }
-.page5.content .photos li>div img.picblue{
+.page5.content .photos li>div .picblue{
+	background: url('../img/page5/camera.png');
+	background-size: 100% 100%;
 	box-sizing: border-box;
 	width: 0.81rem;
 	height: 0.72rem;
 	margin-top: 0.8rem;
+}
+.page5.content .photos li>div .picblue input{
+	display: block;
+	opacity:0;
+}
+.page5.content .photos li>div .picblue.addpicture{
+	background: url('../img/page5/camera2.png');
+	background-size: 100% 100%;
 }
 .page5.content .photos li:nth-child(2) .left>div img.topright{
 	width: 0.93333rem;
