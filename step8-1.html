@@ -296,14 +296,14 @@
 			
 			
 			//保险公司
-			var insuranceData = [];
 			$('#insurance').click(function(){
+				var insuranceData = [];
 				$.ajax({
 					type:"post",
 					url:getInsuranceUrl,
 					async:true,
 					success:function(data){
-						console.log(data.list);
+//						console.log(data.list);
 						var datList = data.list;
 						var Len = data.list.length;
 						for (var i=0;i<Len;i++) {
@@ -315,26 +315,28 @@
 							obj.text=data.list[i].name;
 							insuranceData.push(obj);
 						};
+//						console.log(insuranceData);
+						(function($, doc) {
+							$.init();
+							$.ready(function() {
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var userPicker = new $.PopPicker();
+								userPicker.setData(insuranceData);
+								var showUserPickerButton = doc.getElementById('insurance');
+								var userResult = doc.getElementById('insuranceKinds');
+								showUserPickerButton.addEventListener('tap', function(event) {
+									userPicker.show(function(items) {
+										userResult.innerText = items[0].text;
+									});
+								}, false);
+							});
+						})(mui, document);
 					}
 				});
 			});
-			(function($, doc) {
-				$.init();
-				$.ready(function() {
-					var _getParam = function(obj, param) {
-						return obj[param] || '';
-					};
-					var userPicker = new $.PopPicker();
-					userPicker.setData(insuranceData);
-					var showUserPickerButton = doc.getElementById('insurance');
-					var userResult = doc.getElementById('insuranceKinds');
-					showUserPickerButton.addEventListener('tap', function(event) {
-						userPicker.show(function(items) {
-							userResult.innerText = items[0].text;
-						});
-					}, false);
-				});
-			})(mui, document);
+			
 		</script>
 	</body>
 
