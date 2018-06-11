@@ -199,4 +199,12 @@ $('#subpic').click(function(){
 	})
 });
 //		
-		
+	
+	
+	
+//step8
+$('.page8.content .btn-blue').click(function(){
+//	alert(1);
+	window.location.href = 'step8-1.html';
+})
+//step8-1
