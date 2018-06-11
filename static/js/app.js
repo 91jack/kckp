@@ -139,7 +139,7 @@ $('#createAccident').on('click', function(){
 
 //step5事件交互
 $('#address').click(function(){
-	window.location.href = 'step5_1.html'
+	window.location.href = 'step5_1.html';
 })
 $('.page5.content .where span').click(function(){
 	if($(this).hasClass('active')){
@@ -160,11 +160,48 @@ $('#result').html(newTime);
 
 
 
-//step5摄像头的调用
-$('.takePhotos').click(function(){
-//	alert(1);
-	$(this).siblings('input').css('display','block');
+//step5 上传照片
+//$('#photo1').change(function() {
+//	var objUrl = getObjectURL(this.files[0]);
+//	//console.log("objUrl=" + objUrl);
+////	if(objUrl) {
+////		$("#userlogo").attr("src", objUrl);
+////	}
+//	// 图片地址
+//	console.log(objUrl)
+//})
+
+//建立一個可存取到該file的url  
+function getObjectURL(file) {
+	var url = '';
+	if(window.createObjectURL != undefined) {
+		url = window.createObjectURL(file);
+	} else if(window.URL != undefined) {
+		url = window.URL.createObjectURL(file);
+	} else if(window.webkitURL != undefined) {
+		url = window.webkitURL.createObjectURL(file);
+	}
+	return url;
+}
+$('#step5 .takePhotos input').each(function(){
+	$(this).change(function(){
+		//临时地址
+		var objUrl = getObjectURL(this.files[0]);
+		if(objUrl) {
+			$(this).parent().siblings().children('img').attr("src", objUrl);
+		}
+		// 图片地址
+		console.log(objUrl)
+		
+		console.log($(this).parent().siblings().children('img')[0].files[0])
+		
+	});
 })
+//$('.takePhotos').click(function(){
+	//$(this).siblings('input').css('display','block');
+	
+	
+//})
 
 //step5页面跳转
 
