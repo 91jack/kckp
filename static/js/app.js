@@ -194,7 +194,10 @@ $('#step5 .takePhotos input').each(function(){
 		// 图片地址
 		console.log(objUrl)
 		
-		console.log($(this).parent().siblings().children('img')[0].files[0])
+		console.log($(this)[0].files[0])
+		var file = $(this)[0].files[0];
+		var imgname = file.name; // 图片名字
+		console.log(imgname)
 		
 	});
 })
