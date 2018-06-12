@@ -106,8 +106,7 @@ $('#login').on('click',function(){
 	   		//服务器返回响应，根据响应结果，分析是否登录成功；
 			if(data.status == 2000){
 				console.log(data)
-				window.localStorage.setItem('token',data.token);
-				window.localStorage.setItem('accidentId',data.obj);
+				localStorage.setItem('token',data.obj);
 
 				window.location.href = 'step2.html';
 			}else{
@@ -116,7 +115,6 @@ $('#login').on('click',function(){
 	    }
 	})	
 })
-//console.log(window.localStorage.getItem('token'));
 
 // step4.html 
 // 创建事故
@@ -130,12 +128,15 @@ $('#createAccident').on('click', function(){
 	   },
 	   success: function(data){
 	   	console.log(data)
+		localStorage.setItem('accidentId',data.obj);
 	   	window.location.href = 'step5.html'
 	   }
 	})
 	 
 });
-
+//获取本地的事件信息
+var Atoken = localStorage.getItem('token');
+var AaccidentId = localStorage.getItem('accidentId');
 
 //step5事件交互
 $('#address').click(function(){
@@ -235,13 +236,94 @@ $('#subpic').click(function(){
 	   }
 	})
 });
-//		
 	
-	
+
+
+
+//step7
+$('#handle .handletype').click(function(){
+	var handleType = $(this).attr('data');
+	$.ajax({
+		type:"post",
+		url:choseHandleTypeUrl,
+		async:true,
+		data:{
+			token:Atoken,
+			handleType:handleType,
+			accidentId:AaccidentId
+		},
+		success:function(data){
+			console.log(data);
+			console.log(Atoken);
+			console.log(AaccidentId);
+		}
+	})
+});
+
+
+
+
 	
 //step8
 $('.page8.content .btn-blue').click(function(){
-//	alert(1);
 	window.location.href = 'step8-1.html';
 })
 //step8-1
+var name = $('#name').val();
+var cnumber =$('#cnumber').val();
+var teiNum =$('#telnum').val();
+var carNum = $('#numberKinds').html()+$('#carnum').val();
+var numKind = $('#checkKinds').html();
+var numKindCode = $('#checkKinds').attr('code');
+var insurance = $('#insuranceKinds').html();
+var insuranceCode = $('#insurance').attr('code');
+$('#over').click(function(){
+	$('.modal').css('display','block');
+	var str = '';
+	str += '<li>姓名：'+name+'</li>'
+					+'<li>身份证号码：'+cnumber+'</li>'
+					+'<li>手机号码：'+teiNum+'</li>'
+					+'<li>号牌号码：'+carNum+'</li>'
+					+'<li>号牌种类：'+numKind+'</li>'
+					+'<li>保险公司：'+insurance+'</li>'
+					+'<li class="color-orange">请认证核实你的信息</li>';
+	$('.modal .info-modal').children('ul').html('');
+	$('.modal .info-modal').children('ul').append(str);
+})
+$('#imSure').click(function(){
+
+	
+	$('.modal').css('display','block');
+	$.ajax({
+		type:"POST",
+		url:addAccidentUserUrl,
+		data:{
+			token:Atoken,
+			accidentId:AaccidentId,
+			name:name,
+			cardNo:cnumber,
+			phone:teiNum,
+			carNo:carNum,
+			carType:numKindCode,
+			insuranceId:insuranceCode,
+			firstpic:'',
+			secondpic:''
+		}
+	})
+})
+$('.modal').click(function(){
+	$('.modal').css('display','none');
+})
+$('.modal .info-modal .btn-bottom span').click(function(){
+	$('.modal').css('display','none');
+})
+$('#ca').click(function(){
+	$('#driving').css('display','block');
+})
+$('#cam').click(function(){
+	alert(2);
+})
+
+
+//step11
+

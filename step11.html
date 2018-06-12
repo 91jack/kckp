@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="static/mui/css/mui.min.css" rel="stylesheet" />
+		<link href="static/mui/css/app.css" rel="stylesheet" />
+		<link href="static/mui/css/mui.picker.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="static/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/app.css"/>
+	</head>
+
+	<body class="page8-2-bg">
+		<header class="mui-bar mui-bar-nav">
+		    <div class="title">
+		    	<a class="color-black" href="page2.html">
+		        	<span class="mui-pull-left title bg-black"></span>
+		        	<strong class="color-black mui-pull-left">返回</strong>
+		        </a>
+			    <h1 class="mui-title color-33">事故定责</h1>
+		    </div>   
+		</header>
+		
+		
+		<div class="page11 page8-2 content">
+		    <div class="else difer">
+				<ul>
+					<li>
+						<img src="static/img/page8/bg-blue.png"/>
+						<span class="font-30">事故情形</span>
+						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
+						<p class="mui-pull-right font-30">通过没有交通信号灯控制也没有交通警察指挥的路口，相对方向行驶的右转弯的机动车未让左转弯的机动车先行的</p>
+					</li>
+				</ul>
+			</div>
+			<div class="else">
+				<ul>
+					<li>
+						<img src="static/img/page8/bg-blue.png"/>
+						<span class="font-30">对方信息</span>
+						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
+					</li>
+					<li>
+						<span class="font-30">姓名</span>
+						<span class="mui-pull-right font-30">秦牧</span>
+					</li>
+					<li>
+						<span class="font-30">号牌号码</span>
+						<span class="mui-pull-right font-30">渝A2B440</span>
+					</li>
+					<li>
+						<span class="font-30">手机号码</span>
+						<span class="mui-pull-right font-30">18680745771</span>
+					</li>
+					<li id="depart1">
+						<img src="static/img/page8/bg-blue.png"/>
+						<span class="font-30">车损部位</span>
+						<p id="depart11" class="font-30 color-33 mui-pull-right">请选择</p>
+						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
+					</li>
+					<li class="responsibility">
+						<span>全责</span>
+					</li>
+				</ul>
+			</div>
+			<div class="else">
+				<ul>
+					<li>
+						<img src="static/img/page8/bg-blue.png"/>
+						<span class="font-30">本方信息</span>
+						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
+					</li>
+					<li>
+						<span class="font-30">姓名</span>
+						<span class="mui-pull-right font-30">秦牧</span>
+					</li>
+					<li>
+						<span class="font-30">号牌号码</span>
+						<span class="mui-pull-right font-30">渝A2B440</span>
+					</li>
+					<li>
+						<span class="font-30">手机号码</span>
+						<span class="mui-pull-right font-30">18680745771</span>
+					</li>
+					<li id="depart2">
+						<img src="static/img/page8/bg-blue.png"/>
+						<span class="font-30">车损部位</span>
+						<p id="depart22" class="font-30 color-33 mui-pull-right">请选择</p>
+						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
+					</li>
+					<li id="last" class="responsibility none">
+						<span>无责</span>
+					</li>
+				</ul>
+			</div>
+			<div id="step11-sub" class="btn-grey over">
+				<a class="color-white font-30" href="javascript:;">
+					完成
+				</a>
+			</div>
+		</div>
+				    
+	    
+		<script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="static/mui/js/mui.min.js"></script>
+	    <script src="static/mui/js/mui.picker.min.js"></script>
+		<script src="static/mui/js/mui.poppicker.js"></script>
+		<script src="static/mui/js/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/mui/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('#depart2').click(function(){
+				var carTypeData=[];
+				$.ajax({
+					type:"post",
+					url:getAccidentDamageUrl,
+					async:true,
+					success:function(data){
+						var carData = data.list;
+						var Len = data.list.length;
+						for (var i=0;i<Len;i++) {
+							var type = {
+								"value": "",
+								"text": ""
+							};
+							type.value=data.list[i].code;
+							type.text=data.list[i].name;
+							carTypeData.push(type);
+						}
+						(function($, doc) {
+							$.init();
+							$.ready(function() {
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var	userPicker = new $.PopPicker();
+								userPicker.setData(carTypeData);
+								var showUserPickerButton = doc.getElementById('depart2');
+								var userResult = doc.getElementById('depart22');
+								showUserPickerButton.addEventListener('tap', function(event) {
+									userPicker.show(function(items) {
+										userResult.innerText = items[0].text;
+										userResult.setAttribute('code',items[0].value);
+										console.log(items[0].value)
+									});
+								}, false);
+							});
+						})(mui, document);
+					}
+				})
+			});
+			$('#depart1').click(function(){
+				var carTypeData=[];
+				$.ajax({
+					type:"post",
+					url:getAccidentDamageUrl,
+					async:true,
+					success:function(data){
+						var carData = data.list;
+						var Len = data.list.length;
+						for (var i=0;i<Len;i++) {
+							var type = {
+								"value": "",
+								"text": ""
+							};
+							type.value=data.list[i].code;
+							type.text=data.list[i].name;
+							carTypeData.push(type);
+						}
+						(function($, doc) {
+							$.init();
+							$.ready(function() {
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var	userPicker = new $.PopPicker();
+								userPicker.setData(carTypeData);
+								var showUserPickerButton = doc.getElementById('depart1');
+								var userResult = doc.getElementById('depart11');
+								showUserPickerButton.addEventListener('tap', function(event) {
+									userPicker.show(function(items) {
+										userResult.innerText = items[0].text;
+										userResult.setAttribute('code',items[0].value);
+										console.log(items[0].value)
+									});
+								}, false);
+							});
+						})(mui, document);
+					}
+				})
+			});
+		</script>
+	</body>
+
+</html>

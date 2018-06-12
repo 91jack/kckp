@@ -32,29 +32,33 @@
 				<li>
 					<span>姓名</span>
 					<div class="mui-pull-right">
-						<input class="mui-pull-left mui-text-right" value="张三丰" placeholder="请输入姓名"/>
-						<img class="mui-pull-left" src="static/img/page8/piccc.png"/>
+						<input id="name" class="mui-pull-left mui-text-right" value="张三丰" placeholder="请输入姓名"/>
+						<div id="ca" class="mui-pull-left">
+							<input type="file"/>
+						</div>
 					</div>
 				</li>
 				<li>
 					<span>身份证号码</span>
 					<div class="mui-pull-right">
-						<input class="mui-pull-left mui-text-right" value="500113198856236541" placeholder="请输入身份证号码"/>
+						<input id="cnumber" class="mui-pull-left mui-text-right" value="500113198856236541" placeholder="请输入身份证号码"/>
 					</div>
 				</li>
 				<li>
 					<span>手机号码</span>
 					<div class="mui-pull-right">
-						<input class="mui-pull-left mui-text-right" value="13520513555" placeholder="请输入手机号码"/>
+						<input id="telnum" class="mui-pull-left mui-text-right" value="13520513555" placeholder="请输入手机号码"/>
 					</div>
 				</li>
-				<li id="number">
+				<li>
 					<span>号牌号码</span>
 					<div class="mui-pull-right">
-						<span id="numberKinds" class="mui-pull-left color-33">请选择</span>
-						<img class="down mui-pull-left" src="static/img/page8/down.png"/>
-						<input class="mui-pull-left mui-text-right" type="" name="" id="" value="" placeholder="车牌号"/>
-						<img class="mui-pull-left" src="static/img/page8/piccc.png"/>
+						<!--<span id="numberKinds" class="mui-pull-left color-33">请选择</span>
+						<img class="down mui-pull-left" src="static/img/page8/down.png"/>-->
+						<input class="mui-pull-left mui-text-right" type="" name="" id="carnum" value="" placeholder="车牌号"/>
+						<div id="cam" class="mui-pull-left">
+							<input type="file"/>
+						</div>
 					</div>
 				</li>
 				<li id="check">
@@ -75,41 +79,33 @@
 			
 			<div class="add-person">
 				<span class="bg-orange color-white">删除</span>
-				<span class="bg-blue color-white">完成</span>
+				<span id="over" class="bg-blue color-white">完成</span>
 			</div>
 		</div>
 		<div class="modal">
 			<div class="info-modal">
 				<p class="color-blue font-26">本方信息确认</p>
-				<ul>
-					<li>姓名：张三</li>
-					<li>身份证号码：500382199305212314</li>
-					<li>手机号码：18680735886</li>
-					<li>号牌号码：渝C163w6</li>
-					<li>号牌种类：小车</li>
-					<li>保险公司：平安保险</li>
-					<li class="color-orange">请认证核实你的信息</li>
-				</ul>
+				<ul></ul>
 				<div class="btn-bottom">
 					<div>
 						<span class="color-blue font-30">取消</span>
 					</div>
 					<div>
-						<span class="color-blue font-30">确定</span>
+						<span id="itsRight" class="color-blue font-30">确定</span>
 					</div>
 				</div>
 			</div>
 		</div>		    
-		<div class="del-modal page8-1">
+		<div class="del-modal page8-1" id="driving">
 			<div class="axu">
 				<p>拍摄本方的驾驶证</p>
 				<h3>拍摄自己的驾驶证,自动识别信息!</h3>
 				<img src="static/img/page9/man.png"/>
 				<span>取消</span>
-				<span class="active">确定</span>
+				<span id="imSure" class="active">确定</span>
 			</div>
 		</div>
-		<div class="del-modal page8-1">
+		<div class="del-modal page8-1" id="mushytown">
 			<div class="axu">
 				<p>拍摄本方的行驶证</p>
 				<h3>拍摄自己的行驶证,自动识别信息!</h3>
@@ -128,145 +124,50 @@
 		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			//号牌种类
-			(function($, doc) {
-				$.init();
-				$.ready(function() {
-					var _getParam = function(obj, param) {
-						return obj[param] || '';
-					};
-					var userPicker = new $.PopPicker();
-					userPicker.setData([
-							{
-							"value": "01",
-							"text": "大型汽车"
-							},
-							{
-							"value": "02",
-							"text": "小型汽车"
-							},
-							{
-							"value": "03",
-							"text": "使馆汽车"
-							},
-							{
-							"value": "04",
-							"text": "领馆汽车"
-							},
-							{
-							"value": "05",
-							"text": "境外汽车"
-							},
-							{
-							"value": "06",
-							"text": "外籍汽车"
-							},
-							{
-							"value": "07",
-							"text": "普通摩托车"
-							},
-							{
-							"value": "08",
-							"text": "轻便摩托车"
-							},
-							{
-							"value": "09",
-							"text": "使馆摩托车"
-							},
-							{
-							"value": "10",
-							"text": "领馆摩托车"
-							},
-							{
-							"value": "11",
-							"text": "境外摩托车"
-							},
-							{
-							"value": "12",
-							"text": "外籍摩托车"
-							},
-							{
-							"value": "13",
-							"text": "低速车"
-							},
-							{
-							"code": "14",
-							"text": "拖拉机"
-							},
-							{
-							"value": "15",
-							"text": "挂车"
-							},
-							{
-							"value": "16",
-							"text": "教练汽车"
-							},
-							{
-							"value": "17",
-							"text": "教练摩托车"
-							},
-							{
-							"value": "18",
-							"text": "试验汽车"
-							},
-							{
-							"value": "19",
-							"text": "试验摩托车"
-							},
-							{
-							"value": "20",
-							"text": "临时入境汽车"
-							},
-							{
-							"value": "21",
-							"text": "临时入境摩托车"
-							},
-							{
-							"value": "22",
-							"text": "临时行驶车"
-							},
-							{
-							"value": "23",
-							"text": "警用汽车"
-							},
-							{
-							"value": "24",
-							"text": "警用摩托"
-							},
-							{
-							"value": "25",
-							"text": "原农机号牌"
-							},
-							{
-							"value": "26",
-							"text": "香港入出境车"
-							},
-							{
-							"value": "27",
-							"text": "澳门入出境车"
-							},
-							{
-							"value": "51",
-							"text": "大型新能源汽车"
-							},
-							{
-							"value": "52",
-							"text": "小型新能源汽车"
-							}
-						]);
-					var showUserPickerButton = doc.getElementById('check');
-					var userResult = doc.getElementById('checkKinds');
-					showUserPickerButton.addEventListener('tap', function(event) {
-						userPicker.show(function(items) {
-							userResult.innerText = items[0].text;
-							console.log(items[0].name)
-						});
-					}, false);
-				});
-			})(mui, document);
+			$('#check').click(function(){
+				var carTypeData=[];
+				$.ajax({
+					type:"post",
+					url:getCarTypeUrl,
+					async:true,
+					success:function(data){
+						var carData = data.list;
+						var Len = data.list.length;
+						for (var i=0;i<Len;i++) {
+							var type = {
+								"value": "",
+								"text": ""
+							};
+							type.value=data.list[i].code;
+							type.text=data.list[i].name;
+							carTypeData.push(type);
+						}
+						(function($, doc) {
+							$.init();
+							$.ready(function() {
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var	userPicker = new $.PopPicker();
+								userPicker.setData(carTypeData);
+								var showUserPickerButton = doc.getElementById('check');
+								var userResult = doc.getElementById('checkKinds');
+								showUserPickerButton.addEventListener('tap', function(event) {
+									userPicker.show(function(items) {
+										userResult.innerText = items[0].text;
+										userResult.setAttribute('code',items[0].value);
+										console.log(items[0].value)
+									});
+								}, false);
+							});
+						})(mui, document);
+					}
+				})
+			});
 			
 			
 			//号牌号码
-			$('#number').click(function(){
+			$('#numberKinds').click(function(){
 				var carNumData = [];
 				$.ajax({
 					type:"post",
@@ -285,26 +186,27 @@
 							carNumData.push(car);
 						};
 						(function($, doc) {
-				$.init();
-				$.ready(function() {
-					var _getParam = function(obj, param) {
-						return obj[param] || '';
-					};
-					var userPicker = new $.PopPicker();
-					userPicker.setData(carNumData);
-					var showUserPickerButton = doc.getElementById('number');
-					var userResult = doc.getElementById('numberKinds');
-					showUserPickerButton.addEventListener('tap', function(event) {
-						userPicker.show(function(items) {
-							userResult.innerText = items[0].text;
-							console.log(items[0].name)
-						});
-					}, false);
-				});
-			})(mui, document);
+							$.init();
+							$.ready(function() {
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var	userPicker = new $.PopPicker();
+								userPicker.setData(carNumData);
+								var showUserPickerButton = doc.getElementById('numberKinds');
+								var userResult = doc.getElementById('numberKinds');
+								showUserPickerButton.addEventListener('tap', function(event) {
+									userPicker.show(function(items) {
+										userResult.innerText = items[0].text;
+										userResult.setAttribute('code',items[0].value);
+										console.log(items[0].name)
+									});
+								}, false);
+							});
+						})(mui, document);
 					}
 				});
-			})
+			});
 			
 			
 			
@@ -342,6 +244,7 @@
 								showUserPickerButton.addEventListener('tap', function(event) {
 									userPicker.show(function(items) {
 										userResult.innerText = items[0].text;
+										userResult.setAttribute('code',items[0].value);
 									});
 								}, false);
 							});
