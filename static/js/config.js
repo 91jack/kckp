@@ -36,6 +36,13 @@ var getCarNoUrl = host + '/kyp/app/currencyController/getCarNo';
 // 身份证、驾驶证识别
 var AnalysisUrl = host + '/kyp/app/image/Analysis';
 
+// 添加驾驶证绑定
+// 修改绑定驾驶证信息
+// 获取绑定驾驶证信息
+// 添加绑定机动车信息
+
+/*------------------------------*/
+
 // 事故
 // 创建事故
 var createAccidentUrl = host + '/kyp/applogin/accidentController/createAccident';
@@ -83,7 +90,4 @@ var accidentAuthStatusUrl = host + '/kyp/applogin/accidentController/accidentAut
 
 // 事故信息及当事人列表
 
-/*------------------------*/
-// 登录页 login.html
- 
-// 创建事故 step4.html
+

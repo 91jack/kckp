@@ -65,6 +65,31 @@ $('#goback').on('click', function(){
 var dateTime = month +'月'+day+'日 ' + weekDay
 $('#indexTime').html(dateTime);
 
+// 获取用户token
+var token = localStorage.getItem('token');
+var accidentId = localStorage.getItem('accidentId');
+// 首页判断是否存在用户token
+$('#quickstart').on('click',function(){
+//	token = localStorage.getItem('token');
+//	accidentId = localStorage.getItem('accidentId');
+	
+	if(token){
+		window.location.href = 'user.html';
+	}else{
+		window.location.href = 'login.html';
+	}
+})
+
+$('#index-user').on('click',function(){
+	
+	
+	if(token){
+		window.location.href = 'user.html';
+	}else{
+		window.location.href = 'login.html';
+	}
+})
+
 
 // 登录
 
@@ -92,6 +117,10 @@ $('#getcode').on('click',function(){
 
 // 登录
 $('#login').on('click',function(){
+	var token = localStorage.getItem('token');
+	var accidentId = localStorage.getItem('accidentId');
+	console.log(token)
+	console.log(accidentId)
 	if(token){
 		window.location.href = 'step2.html';
 	}else{
@@ -143,10 +172,10 @@ $('#createAccident').on('click', function(){
 	})
 	 
 });
-//获取本地的事件信息
-var token = localStorage.getItem('token');
-var accidentId = localStorage.getItem('accidentId');
-console.log(accidentId)
+////获取本地的事件信息
+//var token = localStorage.getItem('token');
+//var accidentId = localStorage.getItem('accidentId');
+//console.log(accidentId)
 
 //step5事件交互
 $('#address').click(function(){
