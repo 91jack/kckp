@@ -340,6 +340,7 @@ $('#default1').click(function(){
 $('.del-modal.page8-1').click(function(){
 	$('.del-modal.page8-1').css('display','none');
 })
+
 //上传行驶证，驾驶证
 $('#imSure input').each(function(){
 	$(this).change(function(){
