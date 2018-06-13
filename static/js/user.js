@@ -27,3 +27,13 @@ function uploadImg(that){
 		}
 	});
 }
+
+
+//login_1
+$(function(){
+	$.ajax({
+		type:"get",
+		url:"",
+		async:true
+	});
+})

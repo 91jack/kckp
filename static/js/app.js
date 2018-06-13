@@ -29,25 +29,25 @@ console.log(newTime)
 var weekDay = myDate.getDay();
 switch (weekDay){
 	case 0:
-		weekDay='星期一'
+		weekDay='星期日'
 		break;
 	case 1:
-		weekDay='星期二'
+		weekDay='星期一'
 		break;
 	case 2:
-		weekDay='星期三'
+		weekDay='星期二'
 		break;
 	case 3:
-		weekDay='星期四'
+		weekDay='星期三'
 		break;
 	case 4:
-		weekDay='星期五'
+		weekDay='星期四'
 		break;
 	case 5:
-		weekDay='星期六'
+		weekDay='星期五'
 		break;
 	case 6:
-		weekDay='星期日'
+		weekDay='星期六'
 		break;
 	default:
 		break;
@@ -221,19 +221,22 @@ function uploadImg(that){
 		success: function(data){
 			if(data.status == 2000){
 				console.log(data.list[0])
-				that.parent().siblings().children('img').attr("src",data.list[0]);
+				that.parent().siblings().children('img').attr("src",data.list[0]).css({
+					'width':'100%',
+					'height':'2.66667rem',
+					'margin-top':'0'
+				});
 			}
-			
 		}
 	});
+	that.closest('div').css('background','none');
 }
+
 
 //step5页面跳转
 
 $('#subpic').click(function(){
 	var isExpressway = $('.where em.active').attr('isExpressway');
-//	var accidentId = $.totalStorage('accidentId');
-//	var token = $.totalStorage('token');
 	var isExpressway = $('.where em.active').html();
 	$.ajax({
 	   type: "post",
@@ -254,8 +257,10 @@ $('#subpic').click(function(){
 	   	otherPic3:$('.ac-pic img').eq(5).attr('src'),
 	   },
 	   success: function(data){
-	   	console.log(data)
-		//window.location.href = 'step6.html';
+	   	console.log(data);
+	   	if(data.status==2002){
+	   		window.location.href='step6.html';
+	   	}
 	   }
 	})
 });
@@ -271,14 +276,14 @@ $('#handle .handletype').click(function(){
 		url:choseHandleTypeUrl,
 		async:true,
 		data:{
-			token:Atoken,
+			token:token,
 			handleType:handleType,
-			accidentId:AaccidentId
+			accidentId:accidentId
 		},
 		success:function(data){
 			console.log(data);
-			console.log(Atoken);
-			console.log(AaccidentId);
+			console.log(token);
+			console.log(accidentId);
 		}
 	})
 });
@@ -301,12 +306,12 @@ var name = $('#name').val();
 var reg = /^\d{15}||\d{18}$/;
 var cnumber =$('#cnumber').val();
 if (!reg.test(cnumber)) {
-	cnumber='身份证信息有误，请重新输入';
+	cnumber='身份证信息有误，请重新输入！';
 }
 //判断手机号是否11位
 var re = /^1\d{10}$/;
 if(!re.test(teiNum)){
-	teiNum='手机号码有误，请重新输入'
+	teiNum='手机号码有误，请重新输入！'
 }
 var teiNum =$('#telnum').val();
 var carNum = $('#carnum').val();
@@ -314,19 +319,7 @@ var numKind = $('#checkKinds').html();
 var numKindCode = $('#checkKinds').attr('code');
 var insurance = $('#insuranceKinds').html();
 var insuranceCode = $('#insurance').attr('code');
-$('#over').click(function(){
-	$('.modal').css('display','block');
-	var str = '';
-	str += '<li>姓名：'+name+'</li>'
-					+'<li>身份证号码：'+cnumber+'</li>'
-					+'<li>手机号码：'+teiNum+'</li>'
-					+'<li>号牌号码：'+carNum+'</li>'
-					+'<li>号牌种类：'+numKind+'</li>'
-					+'<li>保险公司：'+insurance+'</li>'
-					+'<li class="color-orange">请认证核实你的信息</li>';
-	$('.modal .info-modal').children('ul').html('');
-	$('.modal .info-modal').children('ul').append(str);
-})
+
 
 $('.modal').click(function(){
 	$('.modal').css('display','none');
@@ -349,6 +342,41 @@ $('#default1').click(function(){
 $('.del-modal.page8-1').click(function(){
 	$('.del-modal.page8-1').css('display','none');
 })
+//上传行驶证，驾驶证
+$('#imSure input').each(function(){
+	$(this).change(function(){
+		var that = $(this)
+		uploadImgFn(that)
+	});
+})
+$('#imSure1 input').each(function(){
+	$(this).change(function(){
+		var that = $(this)
+		uploadImgFn(that)
+	});
+})
+function uploadImgFn(that){
+	var formData = new FormData();	
+	formData.append('files',that[0].files[0]);
+	formData.append('accidentId',accidentId)
+	$.ajax({
+		type:"post",
+		url:uploadImgUrl,
+		data: formData,
+		processData: false,
+        contentType: false,
+        dataType: "json",
+		success: function(data){
+			if(data.status == 2000){
+				console.log(data.list[0])
+				that.parent().siblings('img').attr("src",data.list[0]);
+			}
+		}
+	});
+}
+$('#over').click(function(){
+	$('.modal').css('display','block');
+})
 $('#itsRight').click(function(){
 	$.ajax({
 		type:"POST",
@@ -367,8 +395,21 @@ $('#itsRight').click(function(){
 		},
 		success:function(data){
 			console.log(data);
+			var str = '';
+			str += '<li>姓名：'+name+'</li>'
+					+'<li>身份证号码：'+cnumber+'</li>'
+					+'<li>手机号码：'+teiNum+'</li>'
+					+'<li>号牌号码：'+carNum+'</li>'
+					+'<li>号牌种类：'+numKind+'</li>'
+					+'<li>保险公司：'+insurance+'</li>'
+					+'<li class="color-orange">请认证核实你的信息</li>';
+			$('.modal .info-modal').children('ul').html('');
+			$('.modal .info-modal').children('ul').append(str);
 		}
 	})
 })
-//step11
 
+
+
+//step11
+accidentAuthStatusUrl;

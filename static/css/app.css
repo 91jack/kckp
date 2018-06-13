@@ -789,7 +789,7 @@ a:hover{
 	line-height: 1.6rem;
 }
 .page8-1.content ul li:nth-child(3)>div>input{
-	width: 5rem;
+	width: 6rem;
 }
 .page8-1.content ul li:nth-child(2)>div{
 	position: relative;
@@ -824,7 +824,7 @@ a:hover{
 .page8-1.content ul li input{
 	outline: none;
 	border: none;
-	width: 4.4rem;
+	width: 6rem;
 }
 .page8-1.content ul li:first-child{
 	position: relative;
