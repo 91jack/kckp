@@ -268,11 +268,25 @@ $('#handle .handletype').click(function(){
 $('.page8.content .btn-blue').click(function(){
 	window.location.href = 'step8-1.html';
 })
+
+
 //step8-1
+
+
 var name = $('#name').val();
+//判断身份证号是否18位
+var reg = /^\d{15}||\d{18}$/;
 var cnumber =$('#cnumber').val();
+if (!reg.test(cnumber)) {
+	cnumber='身份证信息有误，请重新输入';
+}
+//判断手机号是否11位
+var re = /^1\d{10}$/;
+if(!re.test(teiNum)){
+	teiNum='手机号码有误，请重新输入'
+}
 var teiNum =$('#telnum').val();
-var carNum = $('#numberKinds').html()+$('#carnum').val();
+var carNum = $('#carnum').val();
 var numKind = $('#checkKinds').html();
 var numKindCode = $('#checkKinds').attr('code');
 var insurance = $('#insuranceKinds').html();
@@ -290,10 +304,29 @@ $('#over').click(function(){
 	$('.modal .info-modal').children('ul').html('');
 	$('.modal .info-modal').children('ul').append(str);
 })
-$('#imSure').click(function(){
 
-	
-	$('.modal').css('display','block');
+$('.modal').click(function(){
+	$('.modal').css('display','none');
+})
+$('.modal .info-modal .btn-bottom span').click(function(){
+	$('.modal').css('display','none');
+})
+$('#ca').click(function(){
+	$('#driving').css('display','block');
+})
+$('#cam').click(function(){
+	$('#mushytown').css('display','block')
+})
+$('#default').click(function(){
+	$('#driving').css('display','none');
+})
+$('#default1').click(function(){
+	$('#mushytown').css('display','none');
+})
+$('.del-modal.page8-1').click(function(){
+	$('.del-modal.page8-1').css('display','none');
+})
+$('#itsRight').click(function(){
 	$.ajax({
 		type:"POST",
 		url:addAccidentUserUrl,
@@ -308,22 +341,11 @@ $('#imSure').click(function(){
 			insuranceId:insuranceCode,
 			firstpic:'',
 			secondpic:''
+		},
+		success:function(data){
+			console.log(data);
 		}
 	})
 })
-$('.modal').click(function(){
-	$('.modal').css('display','none');
-})
-$('.modal .info-modal .btn-bottom span').click(function(){
-	$('.modal').css('display','none');
-})
-$('#ca').click(function(){
-	$('#driving').css('display','block');
-})
-$('#cam').click(function(){
-	alert(2);
-})
-
-
 //step11
 

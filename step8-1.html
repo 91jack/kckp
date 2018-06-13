@@ -34,7 +34,7 @@
 					<div class="mui-pull-right">
 						<input id="name" class="mui-pull-left mui-text-right" value="张三丰" placeholder="请输入姓名"/>
 						<div id="ca" class="mui-pull-left">
-							<input type="file"/>
+							<!--<input type="file"/>-->
 						</div>
 					</div>
 				</li>
@@ -57,7 +57,7 @@
 						<img class="down mui-pull-left" src="static/img/page8/down.png"/>-->
 						<input class="mui-pull-left mui-text-right" type="" name="" id="carnum" value="" placeholder="车牌号"/>
 						<div id="cam" class="mui-pull-left">
-							<input type="file"/>
+							<!--<input type="file"/>-->
 						</div>
 					</div>
 				</li>
@@ -101,8 +101,13 @@
 				<p>拍摄本方的驾驶证</p>
 				<h3>拍摄自己的驾驶证,自动识别信息!</h3>
 				<img src="static/img/page9/man.png"/>
-				<span>取消</span>
-				<span id="imSure" class="active">确定</span>
+				<span id="default">
+					取消
+				</span>
+				<span id="imSure" class="active">
+					确定
+					<input type="file"/>
+				</span>
 			</div>
 		</div>
 		<div class="del-modal page8-1" id="mushytown">
@@ -110,8 +115,13 @@
 				<p>拍摄本方的行驶证</p>
 				<h3>拍摄自己的行驶证,自动识别信息!</h3>
 				<img src="static/img/page9/xingshizheng.png"/>
-				<span class="active">取消</span>
-				<span class="active">拍照</span>
+				<span id="default1">
+					取消
+				</span>
+				<span id="imSure1" class="active">
+					确定
+					<input type="file"/>
+				</span>
 			</div>
 		</div>
 	    
@@ -167,46 +177,46 @@
 			
 			
 			//号牌号码
-			$('#numberKinds').click(function(){
-				var carNumData = [];
-				$.ajax({
-					type:"post",
-					url:getCarNoUrl,
-					async:true,
-					success:function(data){
-						var carData = data.list;
-						var Len = data.list.length;
-						for (var i=0;i<Len;i++) {
-							var car = {
-								"value": "",
-								"text": ""
-							};
-							car.value=data.list[i].id;
-							car.text=data.list[i].cityname;
-							carNumData.push(car);
-						};
-						(function($, doc) {
-							$.init();
-							$.ready(function() {
-								var _getParam = function(obj, param) {
-									return obj[param] || '';
-								};
-								var	userPicker = new $.PopPicker();
-								userPicker.setData(carNumData);
-								var showUserPickerButton = doc.getElementById('numberKinds');
-								var userResult = doc.getElementById('numberKinds');
-								showUserPickerButton.addEventListener('tap', function(event) {
-									userPicker.show(function(items) {
-										userResult.innerText = items[0].text;
-										userResult.setAttribute('code',items[0].value);
-										console.log(items[0].name)
-									});
-								}, false);
-							});
-						})(mui, document);
-					}
-				});
-			});
+//			$('#numberKinds').click(function(){
+//				var carNumData = [];
+//				$.ajax({
+//					type:"post",
+//					url:getCarNoUrl,
+//					async:true,
+//					success:function(data){
+//						var carData = data.list;
+//						var Len = data.list.length;
+//						for (var i=0;i<Len;i++) {
+//							var car = {
+//								"value": "",
+//								"text": ""
+//							};
+//							car.value=data.list[i].id;
+//							car.text=data.list[i].cityname;
+//							carNumData.push(car);
+//						};
+//						(function($, doc) {
+//							$.init();
+//							$.ready(function() {
+//								var _getParam = function(obj, param) {
+//									return obj[param] || '';
+//								};
+//								var	userPicker = new $.PopPicker();
+//								userPicker.setData(carNumData);
+//								var showUserPickerButton = doc.getElementById('numberKinds');
+//								var userResult = doc.getElementById('numberKinds');
+//								showUserPickerButton.addEventListener('tap', function(event) {
+//									userPicker.show(function(items) {
+//										userResult.innerText = items[0].text;
+//										userResult.setAttribute('code',items[0].value);
+//										console.log(items[0].name)
+//									});
+//								}, false);
+//							});
+//						})(mui, document);
+//					}
+//				});
+//			});
 			
 			
 			
@@ -230,7 +240,6 @@
 							obj.text=data.list[i].name;
 							insuranceData.push(obj);
 						};
-//						console.log(insuranceData);
 						(function($, doc) {
 							$.init();
 							$.ready(function() {
