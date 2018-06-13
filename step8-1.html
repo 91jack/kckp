@@ -30,46 +30,46 @@
 					<span>本方信息</span>
 				</li>
 				<li>
-					<span>姓名</span>
+					<span class="font-30">姓名</span>
 					<div class="mui-pull-right">
-						<input id="name" class="mui-pull-left mui-text-right" value="张三丰" placeholder="请输入姓名"/>
+						<input id="name" class="mui-pull-left mui-text-right font-30" value="张三丰" placeholder="请输入姓名"/>
 						<div id="ca" class="mui-pull-left">
-							<input type="file"/>
+							<!--<input type="file"/>-->
 						</div>
 					</div>
 				</li>
 				<li>
-					<span>身份证号码</span>
+					<span class="font-30">身份证号码</span>
 					<div class="mui-pull-right">
-						<input id="cnumber" class="mui-pull-left mui-text-right" value="500113198856236541" placeholder="请输入身份证号码"/>
+						<input id="cnumber" class="mui-pull-left mui-text-right font-30" value="500113198856236541" placeholder="请输入身份证号码"/>
 					</div>
 				</li>
 				<li>
-					<span>手机号码</span>
+					<span class="font-30">手机号码</span>
 					<div class="mui-pull-right">
-						<input id="telnum" class="mui-pull-left mui-text-right" value="13520513555" placeholder="请输入手机号码"/>
+						<input id="telnum" class="mui-pull-left mui-text-right font-30" value="159123456789" placeholder="请输入手机号码"/>
 					</div>
 				</li>
 				<li>
-					<span>号牌号码</span>
+					<span class="font-30">号牌号码</span>
 					<div class="mui-pull-right">
 						<!--<span id="numberKinds" class="mui-pull-left color-33">请选择</span>
 						<img class="down mui-pull-left" src="static/img/page8/down.png"/>-->
-						<input class="mui-pull-left mui-text-right" type="" name="" id="carnum" value="" placeholder="车牌号"/>
+						<input class="mui-pull-left mui-text-right font-30" type="" name="" id="carnum" value="" placeholder="车牌号"/>
 						<div id="cam" class="mui-pull-left">
-							<input type="file"/>
+							<!--<input type="file"/>-->
 						</div>
 					</div>
 				</li>
 				<li id="check">
-					<span>号牌种类</span>
+					<span class="font-30">号牌种类</span>
 					<div class="mui-pull-right">
 						<p id='checkKinds' class="mui-pull-left color-33 font-30">小型汽车</p>
 						<img class="mui-pull-left" src="static/img/page8/more.png"/>
 					</div>
 				</li>
 				<li id="insurance">
-					<span>保险公司</span>
+					<span class="font-30">保险公司</span>
 					<div class="mui-pull-right">
 						<p id="insuranceKinds" class="mui-pull-left color-33 font-30">请选择(非必选)</p>
 						<img class="mui-pull-left" src="static/img/page8/more.png"/>
@@ -101,8 +101,13 @@
 				<p>拍摄本方的驾驶证</p>
 				<h3>拍摄自己的驾驶证,自动识别信息!</h3>
 				<img src="static/img/page9/man.png"/>
-				<span>取消</span>
-				<span id="imSure" class="active">确定</span>
+				<span id="default">
+					取消
+				</span>
+				<span id="imSure" class="active">
+					确定
+					<input type="file"/>
+				</span>
 			</div>
 		</div>
 		<div class="del-modal page8-1" id="mushytown">
@@ -110,8 +115,13 @@
 				<p>拍摄本方的行驶证</p>
 				<h3>拍摄自己的行驶证,自动识别信息!</h3>
 				<img src="static/img/page9/xingshizheng.png"/>
-				<span class="active">取消</span>
-				<span class="active">拍照</span>
+				<span id="default1">
+					取消
+				</span>
+				<span id="imSure1" class="active">
+					确定
+					<input type="file"/>
+				</span>
 			</div>
 		</div>
 	    
@@ -167,46 +177,46 @@
 			
 			
 			//号牌号码
-			$('#numberKinds').click(function(){
-				var carNumData = [];
-				$.ajax({
-					type:"post",
-					url:getCarNoUrl,
-					async:true,
-					success:function(data){
-						var carData = data.list;
-						var Len = data.list.length;
-						for (var i=0;i<Len;i++) {
-							var car = {
-								"value": "",
-								"text": ""
-							};
-							car.value=data.list[i].id;
-							car.text=data.list[i].cityname;
-							carNumData.push(car);
-						};
-						(function($, doc) {
-							$.init();
-							$.ready(function() {
-								var _getParam = function(obj, param) {
-									return obj[param] || '';
-								};
-								var	userPicker = new $.PopPicker();
-								userPicker.setData(carNumData);
-								var showUserPickerButton = doc.getElementById('numberKinds');
-								var userResult = doc.getElementById('numberKinds');
-								showUserPickerButton.addEventListener('tap', function(event) {
-									userPicker.show(function(items) {
-										userResult.innerText = items[0].text;
-										userResult.setAttribute('code',items[0].value);
-										console.log(items[0].name)
-									});
-								}, false);
-							});
-						})(mui, document);
-					}
-				});
-			});
+//			$('#numberKinds').click(function(){
+//				var carNumData = [];
+//				$.ajax({
+//					type:"post",
+//					url:getCarNoUrl,
+//					async:true,
+//					success:function(data){
+//						var carData = data.list;
+//						var Len = data.list.length;
+//						for (var i=0;i<Len;i++) {
+//							var car = {
+//								"value": "",
+//								"text": ""
+//							};
+//							car.value=data.list[i].id;
+//							car.text=data.list[i].cityname;
+//							carNumData.push(car);
+//						};
+//						(function($, doc) {
+//							$.init();
+//							$.ready(function() {
+//								var _getParam = function(obj, param) {
+//									return obj[param] || '';
+//								};
+//								var	userPicker = new $.PopPicker();
+//								userPicker.setData(carNumData);
+//								var showUserPickerButton = doc.getElementById('numberKinds');
+//								var userResult = doc.getElementById('numberKinds');
+//								showUserPickerButton.addEventListener('tap', function(event) {
+//									userPicker.show(function(items) {
+//										userResult.innerText = items[0].text;
+//										userResult.setAttribute('code',items[0].value);
+//										console.log(items[0].name)
+//									});
+//								}, false);
+//							});
+//						})(mui, document);
+//					}
+//				});
+//			});
 			
 			
 			
@@ -230,7 +240,6 @@
 							obj.text=data.list[i].name;
 							insuranceData.push(obj);
 						};
-//						console.log(insuranceData);
 						(function($, doc) {
 							$.init();
 							$.ready(function() {
