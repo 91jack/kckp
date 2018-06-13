@@ -12,9 +12,8 @@
 
 // 获取本地时间
 var myDate = new Date();
-console.log(myDate)
 var year = myDate.getFullYear();
-var month = myDate.getMonth();
+var month = myDate.getMonth()+1;
 var day = myDate.getDate();
 var newData = year+'-'+month+'-'+day;
 console.log(newData);
@@ -63,7 +62,7 @@ $('#goback').on('click', function(){
 
 // 首页 index.html
 //首页时间
-var dateTime = month+'月'+day+'日 ' + weekDay
+var dateTime = month +'月'+day+'日 ' + weekDay
 $('#indexTime').html(dateTime);
 
 
@@ -93,27 +92,33 @@ $('#getcode').on('click',function(){
 
 // 登录
 $('#login').on('click',function(){
-	$.ajax({
-	    type: "POST",
-	    url: loginUrl,
-	  	data:{
-			loginType:'2',
-			phoneType:'2',
-			userName:$('#phone').val(),
-			yzcode: $('#yzcode').val()
-		},
-	    success: function(data){
-	   		//服务器返回响应，根据响应结果，分析是否登录成功；
-			if(data.status == 2000){
-				console.log(data)
-				localStorage.setItem('token',data.obj);
-
-				window.location.href = 'step2.html';
-			}else{
-				console.log(data)
-			}
-	    }
-	})	
+	if(token){
+		window.location.href = 'step2.html';
+	}else{
+		$.ajax({
+		    type: "POST",
+		    url: loginUrl,
+		  	data:{
+				loginType:'2',
+				phoneType:'2',
+				userName:$('#phone').val(),
+				yzcode: $('#yzcode').val()
+			},
+		    success: function(data){
+		   		//服务器返回响应，根据响应结果，分析是否登录成功；
+				if(data.status == 2000){
+					console.log(data)
+					localStorage.setItem('token',data.obj);
+	
+					window.location.href = 'step2.html';
+				}else{
+					console.log(data)
+				}
+		    }
+		})	
+	}
+	
+	
 })
 
 // step4.html 
@@ -124,10 +129,14 @@ $('#createAccident').on('click', function(){
 	   url: createAccidentUrl,
 	   data: {
 	   	type:'2',
-	   	token:'3661363439356430613064343464366539306566306664353466313962643034',
+	   	token: token,
 	   },
 	   success: function(data){
+//	   	if(){
+//	   		
+//	   	}
 	   	console.log(data)
+	   	// 事故id
 		localStorage.setItem('accidentId',data.obj);
 	   	window.location.href = 'step5.html'
 	   }
@@ -135,8 +144,9 @@ $('#createAccident').on('click', function(){
 	 
 });
 //获取本地的事件信息
-var Atoken = localStorage.getItem('token');
-var AaccidentId = localStorage.getItem('accidentId');
+var token = localStorage.getItem('token');
+var accidentId = localStorage.getItem('accidentId');
+console.log(accidentId)
 
 //step5事件交互
 $('#address').click(function(){
@@ -159,83 +169,64 @@ $('#nowData').html(newData);
 $('#result').html(newTime);
 
 
-
-
-//step5 上传照片
-//$('#photo1').change(function() {
-//	var objUrl = getObjectURL(this.files[0]);
-//	//console.log("objUrl=" + objUrl);
-////	if(objUrl) {
-////		$("#userlogo").attr("src", objUrl);
-////	}
-//	// 图片地址
-//	console.log(objUrl)
-//})
-
-//建立一個可存取到該file的url  
-function getObjectURL(file) {
-	var url = '';
-	if(window.createObjectURL != undefined) {
-		url = window.createObjectURL(file);
-	} else if(window.URL != undefined) {
-		url = window.URL.createObjectURL(file);
-	} else if(window.webkitURL != undefined) {
-		url = window.webkitURL.createObjectURL(file);
-	}
-	return url;
-}
 $('#step5 .takePhotos input').each(function(){
 	$(this).change(function(){
-		//临时地址
-		var objUrl = getObjectURL(this.files[0]);
-		if(objUrl) {
-			$(this).parent().siblings().children('img').attr("src", objUrl);
-		}
-		// 图片地址
-		console.log(objUrl)
-		
-		console.log($(this)[0].files[0])
-		var file = $(this)[0].files[0];
-		var imgname = file.name; // 图片名字
-		console.log(imgname)
-		
+		var that = $(this)
+		uploadImg(that)
 	});
 })
-//$('.takePhotos').click(function(){
-	//$(this).siblings('input').css('display','block');
-	
-	
-//})
+
+// 图片上传通用函数
+function uploadImg(that){
+	var formData = new FormData();	
+	formData.append('files',that[0].files[0]);
+	formData.append('accidentId',accidentId)
+
+	$.ajax({
+		type:"post",
+		url:uploadImgUrl,
+		data: formData,
+		processData: false,
+        contentType: false,
+        dataType: "json",
+		success: function(data){
+			if(data.status == 2000){
+				console.log(data.list[0])
+				that.parent().siblings().children('img').attr("src",data.list[0]);
+			}
+			
+		}
+	});
+}
 
 //step5页面跳转
 
 $('#subpic').click(function(){
 	var isExpressway = $('.where em.active').attr('isExpressway');
-	var accidentId = $.totalStorage('accidentId');
-	var token = $.totalStorage('token');
+//	var accidentId = $.totalStorage('accidentId');
+//	var token = $.totalStorage('token');
 	var isExpressway = $('.where em.active').html();
 	$.ajax({
-	   type: "POST",
-	   url: uploadImgUrl,
+	   type: "post",
+	   url: accidentImgUrl,
 	   data: {
-	   	type:'2',
-	   	token:'3661363439356430613064343464366539306566306664353466313962643034',
-	   	accidentId:accidentId
-//	   	address:token
-//	   	address_xy
-//	   	isExpressway
-//	   	datetime
-//	   	weather
-//	   	mainPic1
-//	   	mainPic2
-//	   	mainPic3
-//	   	otherPic1
-//	   	otherPic2
-//	   	otherPic3
+	   	token: token,
+	   	accidentId:accidentId,
+	   	address:'重庆经开大道',
+	   	address_xy:'11',
+	   	isExpressway:'1',
+	   	datetime:'1',
+	   	weather:'1',
+	   	mainPic1:$('.ac-pic img').eq(0).attr('src'),
+	   	mainPic2:$('.ac-pic img').eq(1).attr('src'),
+	   	mainPic3:$('.ac-pic img').eq(2).attr('src'),
+	   	otherPic1:$('.ac-pic img').eq(3).attr('src'),
+	   	otherPic2:$('.ac-pic img').eq(4).attr('src'),
+	   	otherPic3:$('.ac-pic img').eq(5).attr('src'),
 	   },
 	   success: function(data){
 	   	console.log(data)
-		window.location.href = 'step6.html';
+		//window.location.href = 'step6.html';
 	   }
 	})
 });
