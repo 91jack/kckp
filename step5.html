@@ -70,7 +70,7 @@
 		    	</li>
 		    	<li id="weather">
 		    		<strong class="color-33 font-30">
-		    			事故地址
+		    			事故天气
 		    		</strong>
 					<div id='userResult' class="ui-alert color-33 font-30">雨</div>
 		    		<a>
@@ -164,18 +164,21 @@
 			</a>
 		</div>
 				    
-	    <script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	   
 	    <script src="static/mui/js/mui.min.js"></script>
 	    <script src="static/mui/js/mui.picker.min.js"></script>
 		<script src="static/mui/js/mui.poppicker.js"></script>
 		<script src="static/mui/js/city.data.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/mui/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
 		<script type="text/javascript">
-			//step5时间
-			(function($) {
+			
+			(function($, doc) {
 				$.init();
+				//step5时间
 				var result = $('#result')[0];
 				var btns = $('#demo5');
 				btns.each(function(i, btn) {
@@ -190,37 +193,56 @@
 						});
 					}, false);
 				});
-			})(mui);
-			
-			//step5天气交互
-			(function($, doc) {
-				$.init();
+				
+				//step5天气交互
 				$.ready(function() {
 					var _getParam = function(obj, param) {
 						return obj[param] || '';
 					};
 					var userPicker = new $.PopPicker();
 					userPicker.setData([{
-						value: 'q',
-						text: '晴'
-					}, {
-						value: 'sc',
-						text: '沙尘'
-					}, {
-						value: 'df',
-						text: '大风'
-					}, {
-						value: 'bb',
-						text: '冰雹'
-					}, {
-						value: 'x',
-						text: '雪'
-					}]);
+						value: "1",
+						text: "晴"
+						},
+						{
+						value: "2",
+						text: "阴"
+						},
+						{
+						value: "3",
+						text: "雨"
+						},
+						{
+						value: "4",
+						text: "雪"
+						},
+						{
+						value: "5",
+						text: "雾"
+						},
+						{
+						value: "6",
+						text: "大风"
+						},
+						{
+						value: "7",
+						text: "沙尘"
+						},
+						{
+						value: "8",
+						text: "冰雹"
+						},
+						{
+						value: "9",
+						text: "其它"
+						}
+					]);
 					var showUserPickerButton = doc.getElementById('weather');
 					var userResult = doc.getElementById('userResult');
 					showUserPickerButton.addEventListener('tap', function(event) {
 						userPicker.show(function(items) {
 							userResult.innerText = items[0].text;
+							userResult.setAttribute('data',items[0].value)
 						});
 					}, false);
 				});

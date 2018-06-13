@@ -74,19 +74,19 @@ $('#quickstart').on('click',function(){
 //	accidentId = localStorage.getItem('accidentId');
 	
 	if(token){
-		window.location.href = 'user.html';
+		window.location.href = 'step2.html';
 	}else{
 		window.location.href = 'login.html';
 	}
 })
 
-$('#index-user').on('click',function(){
-	if(token){
-		window.location.href = 'user.html';
-	}else{
-		window.location.href = 'login.html';
-	}
-})
+//$('#index-user').on('click',function(){
+//	if(token){
+//		window.location.href = 'user.html';
+//	}else{
+//		window.location.href = 'login.html';
+//	}
+//})
 
 
 // 登录
@@ -231,11 +231,18 @@ function uploadImg(that){
 }
 
 
-//step5页面跳转
 
+
+
+//step5 提交照片进行审核
 $('#subpic').click(function(){
-	var isExpressway = $('.where em.active').attr('isExpressway');
-	var isExpressway = $('.where em.active').html();
+	var isExpressway = $('.where em.active').attr('isExpressway')||'0';
+	var dataTime = $('#nowData').html()+'  '+'   '+$('#result').html();
+	var weather = $('#userResult').attr('data')||'雨';
+	for (var i=0;i<6;i++) {
+		
+	}
+	console.log(weather);
 	$.ajax({
 	   type: "post",
 	   url: accidentImgUrl,
@@ -243,10 +250,10 @@ $('#subpic').click(function(){
 	   	token: token,
 	   	accidentId:accidentId,
 	   	address:'重庆经开大道',
-	   	address_xy:'11',
-	   	isExpressway:'1',
-	   	datetime:'1',
-	   	weather:'1',
+	   	address_xy:(localStorage.getItem('lng'),localStorage.getItem('lat')),
+	   	isExpressway:isExpressway,
+	   	datetime:dateTime,
+	   	weather:weather,
 	   	mainPic1:$('.ac-pic img').eq(0).attr('src'),
 	   	mainPic2:$('.ac-pic img').eq(1).attr('src'),
 	   	mainPic3:$('.ac-pic img').eq(2).attr('src'),
@@ -256,13 +263,17 @@ $('#subpic').click(function(){
 	   },
 	   success: function(data){
 	   	console.log(data);
-	   	if(data.status==2002){
-	   		window.location.href='step6.html';
+	   	if(data.status==2000){
+	   		var status = data.obj
+	   		// 照片审核状态
+	   		localStorage.setItem('status',data.obj);
+	   		//window.location.href='step6.html';
 	   	}
 	   }
 	})
 });
 	
+// step6 
 
 
 
@@ -299,24 +310,6 @@ $('.page8.content .btn-blue').click(function(){
 //step8-1
 
 
-var name = $('#name').val();
-//判断身份证号是否18位
-var reg = /^\d{15}||\d{18}$/;
-var cnumber =$('#cnumber').val();
-if (!reg.test(cnumber)) {
-	cnumber='身份证信息有误，请重新输入！';
-}
-//判断手机号是否11位
-var re = /^1\d{10}$/;
-if(!re.test(teiNum)){
-	teiNum='手机号码有误，请重新输入！'
-}
-var teiNum =$('#telnum').val();
-var carNum = $('#carnum').val();
-var numKind = $('#checkKinds').html();
-var numKindCode = $('#checkKinds').attr('code');
-var insurance = $('#insuranceKinds').html();
-var insuranceCode = $('#insurance').attr('code');
 
 
 $('.modal').click(function(){
@@ -375,40 +368,75 @@ function uploadImgFn(that){
 }
 $('#over').click(function(){
 	$('.modal').css('display','block');
+	var name = $('#name').val();
+	//判断身份证号是否18位
+	var reg = /^\d{15}||\d{18}$/;
+	var cnumber =$('#cnumber').val();
+	if (!reg.test(cnumber)) {
+		$('#cnumber').val('身份证信息有误，请重新输入！');
+	}
+	//判断手机号是否11位
+	var re = /^1\d{10}$/;
+	var teiNum =$('#telnum').val();
+	if(!re.test(teiNum)){
+		teiNum='手机号码有误，请重新输入！'
+	}
+	var carNum = $('#carnum').val();
+	var numKind = $('#checkKinds').html();
+	var numKindCode = $('#checkKinds').attr('code');
+	var insurance = $('#insuranceKinds').html();
+	var insuranceCode = $('#insurance').attr('code');
+	var str = '';
+	str += '<li>姓名：'+name+'</li>'
+			+'<li>身份证号码：'+cnumber+'</li>'
+			+'<li>手机号码：'+teiNum+'</li>'
+			+'<li>号牌号码：'+carNum+'</li>'
+			+'<li>号牌种类：'+numKind+'</li>'
+			+'<li>保险公司：'+insurance+'</li>'
+			+'<li class="color-orange">请认证核实你的信息</li>';
+	$('.modal .info-modal').children('ul').html('');
+	$('.modal .info-modal').children('ul').append(str);
 })
 $('#itsRight').click(function(){
 	$.ajax({
 		type:"POST",
 		url:addAccidentUserUrl,
 		data:{
-			token:Atoken,
-			accidentId:AaccidentId,
-			name:name,
-			cardNo:cnumber,
-			phone:teiNum,
-			carNo:carNum,
-			carType:numKindCode,
-			insuranceId:insuranceCode,
+			token:token,
+			accidentId:accidentId,
+			name:$('#name').val(),
+			cardNo:$('#cnumber').val(),
+			phone:$('#telnum').val(),
+			carNo:$('#carnum').val(),
+			carType:$('#checkKinds').attr('code'),
+			insuranceId:$('#insurance').attr('code'),
 			firstpic:'',
 			secondpic:''
 		},
 		success:function(data){
-			console.log(data);
-			var str = '';
-			str += '<li>姓名：'+name+'</li>'
-					+'<li>身份证号码：'+cnumber+'</li>'
-					+'<li>手机号码：'+teiNum+'</li>'
-					+'<li>号牌号码：'+carNum+'</li>'
-					+'<li>号牌种类：'+numKind+'</li>'
-					+'<li>保险公司：'+insurance+'</li>'
-					+'<li class="color-orange">请认证核实你的信息</li>';
-			$('.modal .info-modal').children('ul').html('');
-			$('.modal .info-modal').children('ul').append(str);
+			console.log(data)
+//			if(data.status==2001){
+//				window.location.href='step8-2.html'
+//			}
 		}
 	})
 })
 
+//添加对方信息step8-2
+//$(function(){
+//	$.ajax({
+//		type:"post",
+//		url:"",
+//		async:true
+//	});
+//})
+//$('#addAnother').click(function  () {
+//	alert(1);
+//})
+
+
+//获取事故人以及当事人信息step8-3
 
 
 //step11
-accidentAuthStatusUrl;
+//accidentAuthStatusUrl;

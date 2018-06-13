@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="static/mui/css/mui.min.css" rel="stylesheet" />
+		<link href="static/mui/css/app.css" rel="stylesheet" />
+		<link href="static/mui/css/mui.picker.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="static/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/app.css"/>
+	</head>
+
+	<body class="acci-info page8-2-bg">
+		<header class="mui-bar mui-bar-nav">
+		    <div class="title">
+		    	<a class="color-black" href="page8.html">
+		        	<span class="mui-pull-left title bg-black"></span>
+		        	<strong class="color-black mui-pull-left">返回</strong>
+		        </a>
+			    <h1 class="mui-title color-33">对方信息</h1>
+		    </div>   
+		</header>
+		
+		<div class="page8-1 content">
+			<ul>
+				<li>
+					<img src="static/img/page8/bg-blue.png"/>
+					<span>本方信息</span>
+				</li>
+				<li>
+					<span class="font-30">姓名</span>
+					<div class="mui-pull-right">
+						<input id="name" class="mui-pull-left mui-text-right font-30" value="张三丰" placeholder="请输入姓名"/>
+						<div id="ca" class="mui-pull-left">
+							<!--<input type="file"/>-->
+						</div>
+					</div>
+				</li>
+				<li>
+					<span class="font-30">身份证号码</span>
+					<div class="mui-pull-right">
+						<input id="cnumber" class="mui-pull-left mui-text-right font-30" value="500113198856236541" placeholder="请输入身份证号码"/>
+					</div>
+				</li>
+				<li>
+					<span class="font-30">手机号码</span>
+					<div class="mui-pull-right">
+						<input id="telnum" class="mui-pull-left mui-text-right font-30" value="159123456789" placeholder="请输入手机号码"/>
+					</div>
+				</li>
+				<li>
+					<span class="font-30">号牌号码</span>
+					<div class="mui-pull-right">
+						<!--<span id="numberKinds" class="mui-pull-left color-33">请选择</span>
+						<img class="down mui-pull-left" src="static/img/page8/down.png"/>-->
+						<input class="mui-pull-left mui-text-right font-30" type="" name="" id="carnum" value="" placeholder="车牌号"/>
+						<div id="cam" class="mui-pull-left">
+							<!--<input type="file"/>-->
+						</div>
+					</div>
+				</li>
+				<li id="check">
+					<span class="font-30">号牌种类</span>
+					<div class="mui-pull-right">
+						<p id='checkKinds' class="mui-pull-left color-33 font-30">小型汽车</p>
+						<img class="mui-pull-left" src="static/img/page8/more.png"/>
+					</div>
+				</li>
+				<li id="insurance">
+					<span class="font-30">保险公司</span>
+					<div class="mui-pull-right">
+						<p id="insuranceKinds" class="mui-pull-left color-33 font-30">请选择(非必选)</p>
+						<img class="mui-pull-left" src="static/img/page8/more.png"/>
+					</div>
+				</li>
+			</ul>
+			
+			<div class="add-person">
+				<span class="bg-orange color-white">删除</span>
+				<span id="over" class="bg-blue color-white">完成</span>
+			</div>
+		</div>
+		<div class="modal">
+			<div class="info-modal">
+				<p class="color-blue font-26">本方信息确认</p>
+				<ul></ul>
+				<div class="btn-bottom">
+					<div>
+						<span class="color-blue font-30">取消</span>
+					</div>
+					<div>
+						<span id="itsRight" class="color-blue font-30">确定</span>
+					</div>
+				</div>
+			</div>
+		</div>		    
+		<div class="del-modal page8-1" id="driving">
+			<div class="axu">
+				<p>拍摄本方的驾驶证</p>
+				<h3>拍摄自己的驾驶证,自动识别信息!</h3>
+				<img src="static/img/page9/man.png"/>
+				<span id="default">
+					取消
+				</span>
+				<span id="imSure" class="active">
+					确定
+					<input type="file"/>
+				</span>
+			</div>
+		</div>
+		<div class="del-modal page8-1" id="mushytown">
+			<div class="axu">
+				<p>拍摄本方的行驶证</p>
+				<h3>拍摄自己的行驶证,自动识别信息!</h3>
+				<img src="static/img/page9/xingshizheng.png"/>
+				<span id="default1">
+					取消
+				</span>
+				<span id="imSure1" class="active">
+					确定
+					<input type="file"/>
+				</span>
+			</div>
+		</div>
+	    
+				    
+	   <script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="static/mui/js/mui.min.js"></script>
+	    <script src="static/mui/js/mui.picker.min.js"></script>
+		<script src="static/mui/js/mui.poppicker.js"></script>
+		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//号牌种类
+			$('#check').click(function(){
+				var carTypeData=[];
+				$.ajax({
+					type:"post",
+					url:getCarTypeUrl,
+					async:true,
+					success:function(data){
+						var carData = data.list;
+						var Len = data.list.length;
+						for (var i=0;i<Len;i++) {
+							var type = {
+								"value": "",
+								"text": ""
+							};
+							type.value=data.list[i].code;
+							type.text=data.list[i].name;
+							carTypeData.push(type);
+						}
+						(function($, doc) {
+							$.init();
+							$.ready(function() {
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var	userPicker = new $.PopPicker();
+								userPicker.setData(carTypeData);
+								var showUserPickerButton = doc.getElementById('check');
+								var userResult = doc.getElementById('checkKinds');
+								showUserPickerButton.addEventListener('tap', function(event) {
+									userPicker.show(function(items) {
+										userResult.innerText = items[0].text;
+										userResult.setAttribute('code',items[0].value);
+										console.log(items[0].value)
+									});
+								}, false);
+							});
+						})(mui, document);
+					}
+				})
+			});
+			
+			
+			//号牌号码
+//			$('#numberKinds').click(function(){
+//				var carNumData = [];
+//				$.ajax({
+//					type:"post",
+//					url:getCarNoUrl,
+//					async:true,
+//					success:function(data){
+//						var carData = data.list;
+//						var Len = data.list.length;
+//						for (var i=0;i<Len;i++) {
+//							var car = {
+//								"value": "",
+//								"text": ""
+//							};
+//							car.value=data.list[i].id;
+//							car.text=data.list[i].cityname;
+//							carNumData.push(car);
+//						};
+//						(function($, doc) {
+//							$.init();
+//							$.ready(function() {
+//								var _getParam = function(obj, param) {
+//									return obj[param] || '';
+//								};
+//								var	userPicker = new $.PopPicker();
+//								userPicker.setData(carNumData);
+//								var showUserPickerButton = doc.getElementById('numberKinds');
+//								var userResult = doc.getElementById('numberKinds');
+//								showUserPickerButton.addEventListener('tap', function(event) {
+//									userPicker.show(function(items) {
+//										userResult.innerText = items[0].text;
+//										userResult.setAttribute('code',items[0].value);
+//										console.log(items[0].name)
+//									});
+//								}, false);
+//							});
+//						})(mui, document);
+//					}
+//				});
+//			});
+			
+			
+			
+			//保险公司
+			$('#insurance').click(function(){
+				var insuranceData = [];
+				$.ajax({
+					type:"post",
+					url:getInsuranceUrl,
+					async:true,
+					success:function(data){
+//						console.log(data.list);
+						var datList = data.list;
+						var Len = data.list.length;
+						for (var i=0;i<Len;i++) {
+							var obj = {
+								"value": "",
+								"text": ""
+							};
+							obj.value=data.list[i].code;
+							obj.text=data.list[i].name;
+							insuranceData.push(obj);
+						};
+						(function($, doc) {
+							$.init();
+							$.ready(function() {
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var userPicker = new $.PopPicker();
+								userPicker.setData(insuranceData);
+								var showUserPickerButton = doc.getElementById('insurance');
+								var userResult = doc.getElementById('insuranceKinds');
+								showUserPickerButton.addEventListener('tap', function(event) {
+									userPicker.show(function(items) {
+										userResult.innerText = items[0].text;
+										userResult.setAttribute('code',items[0].value);
+									});
+								}, false);
+							});
+						})(mui, document);
+					}
+				});
+			});
+			
+		</script>
+	</body>
+
+</html>
