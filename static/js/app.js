@@ -81,8 +81,6 @@ $('#quickstart').on('click',function(){
 })
 
 $('#index-user').on('click',function(){
-	
-	
 	if(token){
 		window.location.href = 'user.html';
 	}else{

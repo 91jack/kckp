@@ -37,9 +37,28 @@ var getCarNoUrl = host + '/kyp/app/currencyController/getCarNo';
 var AnalysisUrl = host + '/kyp/app/image/Analysis';
 
 // 添加驾驶证绑定
+var addBindingDriverUrl = host + 'kyp/applogin/currencyController/addBindingDriver';
+
 // 修改绑定驾驶证信息
+var editBindingDriverUrl = host + 'kyp/applogin/currencyController/editBindingDriver';
+
 // 获取绑定驾驶证信息
+var getBindingDriverUrl = host + 'kyp/applogin/currencyController/getBindingDriver';
+
+// 删除绑定驾驶证
+var removeBindingDriverUrl = host + 'kyp/applogin/currencyController/removeBindingDriver';
+
+// 获取绑定机动车信息
+var getBindingCarUrl = host + 'kyp/applogin/currencyController/getBindingCar';
+
 // 添加绑定机动车信息
+var addBindingCarUrl = host + 'kyp/applogin/currencyController/addBindingCar';
+
+// 修改绑定机动车信息
+var editBindingCarUrl = host + 'kyp/applogin/currencyController/editBindingCar';
+
+// 删除绑定机动车信息
+var removeBindingCarUrl = host + 'kyp/applogin/currencyController/removeBindingCar';
 
 /*------------------------------*/
 

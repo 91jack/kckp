@@ -27,22 +27,23 @@
 					<p class="font-24 color-33">驾驶证拍摄</p>
 					<img src="static/img/page9/man.png"/>
 					<img class="take-pho" src="static/img/page5/camera2.png"/>
+					
 				</div>
 			</div>
 			<div class="else">
 				<ul>
 					<li>
 						<span class="font-30 color-33">姓名</span>
-						<input type="" name="" id="" value="邓棋" placeholder="请输入姓名"/>
+						<input type="" name="" id="" value="" placeholder="请输入姓名"/>
 					</li>
 					<li>
 						<span class="font-30 color-33">身份证号码</span>
-						<input type="" name="" id="" value="500382199307232532" placeholder="请输入姓身份证号码"/>
+						<input type="" name="" id="" value="" placeholder="请输入姓身份证号码"/>
 					</li>
 					<li>
 						<span class="font-30 color-33">初次领证日期</span>
 						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
-						<span class="mui-pull-right font-26">2017-01-21</span>
+						<span class="mui-pull-right font-26">请选择</span>
 					</li>
 				</ul>
 			</div>
@@ -55,7 +56,53 @@
 		    
 		<script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script type="text/javascript">
+			// 上传识别驾驶证识别
+			$('#step5 .takePhotos input').each(function(){
+				$(this).change(function(){
+					var formData = new FormData();	
+					formData.append('files',that[0].files[0]);
+					formData.append('token',token);
+					formData.append('imgType', 1)
+				
+					$.ajax({
+						type:"post",
+						url: AnalysisUrl,
+						data: formData,
+						processData: false,
+				        contentType: false,
+				        dataType: "json",
+						success: function(data){
+							if(data.status == 2000){
+								console.log(data.list[0])
+								that.parent().siblings().children('img').attr("src",data.list[0]);
+							}
+							
+						}
+					});
+				});
+			})
+			
+			
+			// 绑定驾驶证
+			$.ajax({
+				type:"post",
+				url:addBindingDriverUrl,
+				data:{
+					token:'',
+					name:'',
+					card:'',
+					date:''
+				},
+				success: function(data){
+					console.log(data)
+					if(data.status == 2000){
+						console.log(data)
+					}
+				}
+				
+			});
+		</script>
 	</body>
 
 </html>
