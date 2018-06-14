@@ -104,9 +104,8 @@ var accidentAuthStatusUrl = host + '/kyp/applogin/accidentController/accidentAut
 
 // 信息查询
 // 信息查询主页面
-
-// 事故搜索
+var accidentsDealInfoUrl = host + 'kyp/applogin/userController/accidentsDealInfo';
 
 // 事故信息及当事人列表
-
+var accidentAuthStatusUrl = host + '/kyp/applogin/accidentController/accidentAuthStatus';
 
