@@ -20,27 +20,8 @@
 	    </header>
 		    
 		<div class="page10 content">
-			<ul>
-			    <li>
-			        <img src="http://placehold.it/40x30">
-			        <span class="font-24 color-33">
-			        	在同车道行驶中，不按规定与前车保持
-						必要的安全距离的（追尾）
-			        </span>
-			        <div class="mui-pull-right">
-			        	<img src="static/img/page5/bigo.png"/>
-			        </div>
-			    </li>
-			    <li>
-			        <img src="http://placehold.it/40x30">
-			        <span class="font-24 color-33">
-			        	在同车道行驶中，不按规定与前车保持
-						必要的安全距离的（追尾）
-			        </span>
-			        <div class="mui-pull-right">
-			        	<img src="static/img/page5/bigo.png"/>
-			        </div>
-			    </li>
+			<ul id="acchose">
+				
 			</ul>
 		</div>
 		    
@@ -49,21 +30,50 @@
 	    		提交照片
 	    	</a>
 	    </div>
-	    <div class="page10-modal">
+	    <div class="page10-modal" id="detail-acpic">
 	    	<div>
 	    		<span class="bg-blue color-white font-32">确认事故方</span>
 	    		<p class="color-33 font-26">
 	    			请确认本人在本次事故中属于A方还是B方!
 	    		</p>
-	    		<img src="static/img/page1/acci.png"/>
+	    		<img src="static/img/page1/acci2.png"/>
 	    		<button class="color-blue">A方</button>
 	    		<button>B方</button>
 	    	</div>
 	    </div>
 		    
-		<script src="static/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					type:"post",
+					url:getAccidentTypeUrl,
+					success:function(data){
+						console.log(data);
+						if (data.status==2000) {
+							var Len = data.list.length;
+							console.log(Len);
+							var str='';
+							for (var i=0;i<Len;i++) {
+								str +='<li class="checkac">'
+								        +'<img src="'+data.list[i].url+'">'
+								        +'<span data="'+data.list[i].code+'" class="font-24 color-33">'
+								        	+data.list[i].name
+								        +'</span>'
+								        +'<div class="mui-pull-right">'
+								        	+'<img class="mi" src="static/img/page5/right.png"/>'
+								        +'</div>'
+								    +'</li>';	
+							}
+							$('.page10.content ul').html('');
+							$('.page10.content ul').append(str);
+						}
+					}
+				});
+			})
+		</script>
 	</body>
 
 </html>

@@ -36,6 +36,9 @@ a:hover{
 	margin-top: -0.433335rem;
 	right: 0;
 }
+#demo4{
+	position: relative;
+}
 #result{
 	position: absolute;
 	right: 2.88rem;
@@ -48,6 +51,26 @@ a:hover{
 	position: absolute;
 	top: 0;
 	left: 2.626667rem;
+}
+#detail-acpic{
+	display: none;
+}
+#cont-drive{
+	background: #fff;
+	position: relative;
+}
+#res{
+	position: absolute;
+	background: #fff;
+	color: #333;
+	bottom: 0;
+	font-size: 0.4rem;
+}
+#resu{
+	position: absolute;
+	background: #fff;
+	color: #333;
+	bottom: -0.18rem;
 }
 /*page1*/
 .home-bg{
@@ -1175,6 +1198,9 @@ a:hover{
 
 
 /*page10*/
+.page10.content{
+	margin-bottom: 2.3rem;
+}
 .page10.content li{
 	height: 2.77778rem;
 	line-height: 2.77778rem;
@@ -1487,6 +1513,9 @@ a:hover{
 	line-height: 1.3333rem;
 	border-bottom: 1px solid #F4F4F4;
 }
+.login.content .else li span{
+	margin-left: 0.4rem;
+}
 .login.content .else li:last-child{
 	border-bottom: none;
 }
@@ -1534,12 +1563,17 @@ a:hover{
 }
 .login-1 .login-1-photo .take-pic .take-pho{
 	position: absolute;
+	background: url('../img/page5/camera2.png');
 	top: 50%;
 	left: 50%;
 	margin-left: -0.4rem;
 	margin-top: -0.15rem;
 	width: 0.8rem;
 	height: 0.72rem;
+	background-size: 100% 100%;
+}
+.login-1 .login-1-photo .take-pic .take-pho input{
+	opacity: 0;
 }
 .login-1 .login-1-photo .take-pic img{
 	margin-top: 0.15rem;

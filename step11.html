@@ -19,7 +19,7 @@
 		        	<span class="mui-pull-left title bg-black"></span>
 		        	<strong class="color-black mui-pull-left">返回</strong>
 		        </a>
-			    <h1 class="mui-title color-33">事故定责</h1>
+			    <h1 class="mui-title color-33">短信验证</h1>
 		    </div>   
 		</header>
 		
@@ -104,94 +104,22 @@
 				    
 	    
 		<script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-	    <script src="static/mui/js/mui.min.js"></script>
-	    <script src="static/mui/js/mui.picker.min.js"></script>
-		<script src="static/mui/js/mui.poppicker.js"></script>
-		<script src="static/mui/js/city.data.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/mui/js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/app.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$('#depart2').click(function(){
-				var carTypeData=[];
+			$(function(){
 				$.ajax({
 					type:"post",
-					url:getAccidentDamageUrl,
-					async:true,
+					url:getAccidentUserInfoUrl,
+					data:{
+						token:token,
+						accidentId:accidentId
+					},
 					success:function(data){
-						var carData = data.list;
-						var Len = data.list.length;
-						for (var i=0;i<Len;i++) {
-							var type = {
-								"value": "",
-								"text": ""
-							};
-							type.value=data.list[i].code;
-							type.text=data.list[i].name;
-							carTypeData.push(type);
-						}
-						(function($, doc) {
-							$.init();
-							$.ready(function() {
-								var _getParam = function(obj, param) {
-									return obj[param] || '';
-								};
-								var	userPicker = new $.PopPicker();
-								userPicker.setData(carTypeData);
-								var showUserPickerButton = doc.getElementById('depart2');
-								var userResult = doc.getElementById('depart22');
-								showUserPickerButton.addEventListener('tap', function(event) {
-									userPicker.show(function(items) {
-										userResult.innerText = items[0].text;
-										userResult.setAttribute('code',items[0].value);
-										console.log(items[0].value)
-									});
-								}, false);
-							});
-						})(mui, document);
+						console.log(data);
 					}
-				})
-			});
-			$('#depart1').click(function(){
-				var carTypeData=[];
-				$.ajax({
-					type:"post",
-					url:getAccidentDamageUrl,
-					async:true,
-					success:function(data){
-						var carData = data.list;
-						var Len = data.list.length;
-						for (var i=0;i<Len;i++) {
-							var type = {
-								"value": "",
-								"text": ""
-							};
-							type.value=data.list[i].code;
-							type.text=data.list[i].name;
-							carTypeData.push(type);
-						}
-						(function($, doc) {
-							$.init();
-							$.ready(function() {
-								var _getParam = function(obj, param) {
-									return obj[param] || '';
-								};
-								var	userPicker = new $.PopPicker();
-								userPicker.setData(carTypeData);
-								var showUserPickerButton = doc.getElementById('depart1');
-								var userResult = doc.getElementById('depart11');
-								showUserPickerButton.addEventListener('tap', function(event) {
-									userPicker.show(function(items) {
-										userResult.innerText = items[0].text;
-										userResult.setAttribute('code',items[0].value);
-										console.log(items[0].value)
-									});
-								}, false);
-							});
-						})(mui, document);
-					}
-				})
-			});
+				});
+			})
 		</script>
 	</body>
 
