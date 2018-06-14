@@ -32,18 +32,21 @@
 			</div>
 			<div class="else">
 				<ul>
-					<li>
+					<li id="binddrive">
 						<span class="font-30 color-33">我的驾驶证</span>
+						<span id="bindeddrive" class="font-26 color-blue"></span>
 						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
 						<span class="mui-pull-right font-26 color-red">未绑定</span>
 					</li>
-					<li>
+					<li id="bindcar">
 						<span class="font-30 color-33">我的机动车</span>
+						<span id="bindedcarnum" class="font-26 color-blue"></span>
 						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
-						<span class="mui-pull-right font-26 color-red">未绑定</span>
+						<span id="bindedcar" class="mui-pull-right font-26 color-red">未绑定</span>
 					</li>
-					<li>
+					<li id="bindnum">
 						<span class="font-30 color-33">我的手机号</span>
+						<span id="bindednum" class="font-26 color-blue"></span>
 						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
 						<span class="mui-pull-right font-26 color-red">未绑定</span>
 					</li>
@@ -51,19 +54,17 @@
 			</div>
 			<div class="else">
 				<ul>
-					<li>
+					<li id="tellus">
 						<a href="opinion.html">
 							<span class="font-30 color-33">用户反馈</span>
 							<img class="mui-pull-right next" src="static/img/page5/next.png"/>
 						</a>
-						
 					</li>
-					<li>
+					<li id="aboutus">
 						<a href="about_us.html">
 							<span class="font-30 color-33">关于我们</span>
 							<img class="mui-pull-right next" src="static/img/page5/next.png"/>
 						</a>
-						
 					</li>
 				</ul>
 			</div>
@@ -71,8 +72,50 @@
 		    
 		<script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/user.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			//
+			$(function(){
+				var token = localStorage.getItem('token')
+				$.ajax({
+					type:"post",
+					url:getBindingDriverUrl,
+					data:{
+						token:token
+					},
+					success:function(data){
+						console.log(data);
+						if(data.status==2000){
+							$('#bindeddrive').html(data.list[0].carNo)
+						}
+					}
+				});
+				$.ajax({
+					type:"post",
+					url:addBindingCarUrl,
+					data:{
+						token:token
+					},
+					success:function(data){
+						console.log(data);
+						if(data.status==2000){
+							$('#bindedcarnum').html(data.list[0].card).css('caolor','#38ADFF');
+						}
+					}
+				});
+				if($('#bindeddrive').html()!=''){
+					$(this).next('span').html('修改').css('color','#CCCCCC').attr('code','-1');
+				}
+				if($('#bindedcarnum').html()!=''){
+					$(this).next('span').html('修改').css('color','#CCCCCC').attr('code','-1');
+				}
+				if($('#bindednum').html()!=''){
+					$(this).next('span').html('修改').css('color','#CCCCCC');
+					if ((this).next('span').html()=='修改') {
+						window.location.href='correctnum.html';
+					}
+				}
+			})
 		</script>
 	</body>
 

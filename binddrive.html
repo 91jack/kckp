@@ -4,11 +4,13 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="static/mui/css/app.css"/>
+		<link rel="stylesheet" type="text/css" href="static/mui/css/mui.picker.min.css"/>
 		<link href="static/mui/css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="static/css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="static/css/app.css"/>
 	</head>
-	<body class="page8-2-bg">
+	<body class="page8-2-bg" style="overflow: hidden;">
 		
 		<header class="mui-bar mui-bar-nav">
 	        <a class="color-black" id="goback">
@@ -26,40 +28,63 @@
 				<div class="take-pic">
 					<p class="font-24 color-33">驾驶证拍摄</p>
 					<img src="static/img/page9/man.png"/>
-					<img class="take-pho" src="static/img/page5/camera2.png"/>
+					<div class="take-pho">
+						<input type="file" id="getdrive" />
+					</div>
 				</div>
 			</div>
 			<div class="else">
 				<ul>
 					<li>
 						<span class="font-30 color-33">姓名</span>
-						<input type="" name="" id="" value="" placeholder="请输入姓名"/>
+						<input id="drivename" placeholder="请输入姓名"/>
 					</li>
 					<li>
 						<span class="font-30 color-33">身份证号码</span>
-						<input type="" name="" id="" value="" placeholder="请输入姓身份证号码"/>
+						<input id="drivecard" placeholder="请输入姓身份证号码"/>
 					</li>
-					<li>
-						<span class="font-30 color-33">档案编号</span>
-						<input type="" name="" id="" value="" placeholder="请输入档案编号"/>
-					</li>
-					<li>
+					<li id="demo4" data-options='{"type":"date"}'>
 						<span class="font-30 color-33">初次领证日期</span>
 						<img class="mui-pull-right next" src="static/img/page5/next.png"/>
-						<span class="mui-pull-right font-26">请选择</span>
+						<div id="cont-drive" class="mui-pull-right font-26">
+							<div id="res" class="font-30">
+								请选择
+							</div>
+						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="page10-btn-footer">
-	    	<a class="btn-blue" href="page6.html">
+		<div class="page10-btn-footer" id="subbinddriver">
+	    	<a class="btn-blue">
 	    		立即绑定
 	    	</a>
 	    </div>
-		    
+	    <script src="static/mui/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/mui/js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script src="static/js/user.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/config.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			(function($) {
+				$.init();
+				var result = $('#res')[0];
+				var btns = $('#demo4');
+				btns.each(function(i, btn) {
+					btn.addEventListener('tap', function() {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						var id = this.getAttribute('id');
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							result.innerText = rs.text;
+							picker.dispose();
+						});
+					}, false);
+				});
+			})(mui);
+		</script>
 	</body>
 
 </html>

@@ -176,6 +176,11 @@ $('#createAccident').on('click', function(){
 //console.log(accidentId)
 
 //step5事件交互
+$(function(){
+	if (localStorage.getItem('add')) {
+		$('#detail-add').html(localStorage.getItem('add'))
+	}
+})
 $('#address').click(function(){
 	window.location.href = 'step5_1.html';
 })
@@ -239,17 +244,16 @@ $('#subpic').click(function(){
 	var isExpressway = $('.where em.active').attr('isExpressway')||'0';
 	var dataTime = $('#nowData').html()+'  '+'   '+$('#result').html();
 	var weather = $('#userResult').attr('data')||'雨';
-	for (var i=0;i<6;i++) {
-		
-	}
-	console.log(weather);
+	var otherPic1 = $('.ac-pic img').eq(3).attr('src') || '';
+	var otherPic2 = $('.ac-pic img').eq(4).attr('src') || '';
+	var otherPic3 = $('.ac-pic img').eq(5).attr('src') || '';
 	$.ajax({
 	   type: "post",
 	   url: accidentImgUrl,
 	   data: {
 	   	token: token,
 	   	accidentId:accidentId,
-	   	address:'重庆经开大道',
+	   	address:localStorage.getItem('add'),
 	   	address_xy:(localStorage.getItem('lng'),localStorage.getItem('lat')),
 	   	isExpressway:isExpressway,
 	   	datetime:dateTime,
@@ -257,9 +261,9 @@ $('#subpic').click(function(){
 	   	mainPic1:$('.ac-pic img').eq(0).attr('src'),
 	   	mainPic2:$('.ac-pic img').eq(1).attr('src'),
 	   	mainPic3:$('.ac-pic img').eq(2).attr('src'),
-	   	otherPic1:$('.ac-pic img').eq(3).attr('src'),
-	   	otherPic2:$('.ac-pic img').eq(4).attr('src'),
-	   	otherPic3:$('.ac-pic img').eq(5).attr('src'),
+	   	otherPic1:otherPic1,
+	   	otherPic2:otherPic2,
+	   	otherPic3:otherPic3,
 	   },
 	   success: function(data){
 	   	console.log(data);
@@ -267,7 +271,11 @@ $('#subpic').click(function(){
 	   		var status = data.obj
 	   		// 照片审核状态
 	   		localStorage.setItem('status',data.obj);
-	   		//window.location.href='step6.html';
+	   		if (status==0) {
+	   			window.location.href='step6-unpass.html';
+	   		} else if(status==1){
+	   			window.location.href='step6-pass.html';
+	   		}
 	   	}
 	   }
 	})
@@ -290,9 +298,9 @@ $('#handle .handletype').click(function(){
 			accidentId:accidentId
 		},
 		success:function(data){
-			console.log(data);
-			console.log(token);
-			console.log(accidentId);
+			if(data.status==2000){
+				window.location.href='step8.html'
+			}
 		}
 	})
 });
@@ -415,28 +423,166 @@ $('#itsRight').click(function(){
 		},
 		success:function(data){
 			console.log(data)
-//			if(data.status==2001){
-//				window.location.href='step8-2.html'
-//			}
+			if(data.status==2000){
+				window.location.href='step8-2.html'
+			}
 		}
 	})
 })
 
-//添加对方信息step8-2
+
+
+//获取当事人以及事故人信息
 //$(function(){
 //	$.ajax({
 //		type:"post",
-//		url:"",
-//		async:true
+//		url:getAccidentUserInfoUrl,
+//		async:true,
+//		success:function(data){
+//			console.log(data);
+//			if (data.status==2000) {
+//				$('#selfname').html(data)
+//			} 
+//		}
 //	});
 //})
-//$('#addAnother').click(function  () {
-//	alert(1);
-//})
 
 
+
+//添加对方信息step8-2
+$('#addAnother').click(function  () {
+	window.location.href='step8-1-1.html'
+})
+$('#step81over').click(function(){
+	$('.modal').css('display','block');
+	var name = $('#name').val();
+	//判断身份证号是否18位
+	var reg = /^\d{15}||\d{18}$/;
+	var cnumber =$('#cnumber').val();
+	if (!reg.test(cnumber)) {
+		$('#cnumber').val('身份证信息有误，请重新输入！');
+	}
+	//判断手机号是否11位
+	var re = /^1\d{10}$/;
+	var teiNum =$('#telnum').val();
+	if(!re.test(teiNum)){
+		teiNum='手机号码有误，请重新输入！'
+	}
+	var carNum = $('#carnum').val();
+	var numKind = $('#checkKinds').html();
+	var numKindCode = $('#checkKinds').attr('code');
+	var insurance = $('#insuranceKinds').html();
+	var insuranceCode = $('#insurance').attr('code');
+	var str = '';
+	str += '<li>姓名：'+name+'</li>'
+			+'<li>身份证号码：'+cnumber+'</li>'
+			+'<li>手机号码：'+teiNum+'</li>'
+			+'<li>号牌号码：'+carNum+'</li>'
+			+'<li>号牌种类：'+numKind+'</li>'
+			+'<li>保险公司：'+insurance+'</li>'
+			+'<li class="color-orange">请认证核实你的信息</li>';
+	$('.modal .info-modal').children('ul').html('');
+	$('.modal .info-modal').children('ul').append(str);
+})
+$('#itsRight81').click(function(){
+	$.ajax({
+		type:"POST",
+		url:addAccidentUserUrl,
+		data:{
+			token:token,
+			accidentId:accidentId,
+			name:$('#name').val(),
+			cardNo:$('#cnumber').val(),
+			phone:$('#telnum').val(),
+			carNo:$('#carnum').val(),
+			carType:$('#checkKinds').attr('code'),
+			insuranceId:$('#insurance').attr('code'),
+			firstpic:'',
+			secondpic:''
+		},
+		success:function(data){
+			console.log(data)
+			if(data.status==2000){
+				window.location.href='step8-3.html'
+			}
+		}
+	})
+})
 //获取事故人以及当事人信息step8-3
 
+$('#step83').click(function(){
+	window.location.href='step9.html';
+})
 
-//step11
-//accidentAuthStatusUrl;
+
+//step9获取事故双方的证件
+//$(function(){
+//	$.ajax({
+//		type:"post",
+//		url:getFourInOnePicUrl,
+//		success:function(data){
+//			console.log(data);
+//			if (data.status==2000) {
+////				window.location.href='step10.html';
+//			}
+//		}
+//	});
+//})
+$('#sub9').click(function(){
+	alert(111);
+	window.location.href='step10.html';	
+});
+
+
+
+//选择事故step10
+
+$('#acchose').on('click','.checkac',function(){
+	$('.mi').attr('src','static/img/page5/right.png')
+	$(this).children('div').children('.mi').attr('src','static/img/page5/bigo.png')
+	var code = $(this).children('div').children('.mi').attr('code');
+	$('#detail-acpic').css('display','block');
+	$('#detail-acpic div').children('img').attr('src',$(this).children('img').attr('src'));
+	$('#detail-acpic div button').click(function(){
+		$.ajax({
+			type:"post",
+			url:choseAccidentType,
+			data:{
+				token:token,
+				accidentId:accidentId,
+				accidentType:code
+			},
+			success:function(data){
+				if(data.status==2000){
+					window.location.href='step11.html'
+				}
+			}
+		});
+	})
+})
+
+
+//step12
+$('#get').on('click',function(){
+	$.ajax({
+	    type: "POST",
+	    url: yzcodeUrl,
+	  	data:{
+			phone:$('#phonenum').html(),
+			type:'4'
+		},
+	    success: function(data){
+	   		//服务器返回响应，根据响应结果，分析是否登录成功；
+			if(data.status == 2000){
+				console.log(data)
+				$('#getyzcode').val(data.obj)
+			}else{
+				console.log(data)
+			}
+	    }
+	})
+	if ($('getyzcode').val()!='') {
+		$('#get').css('background','#F56954').html('重新发送');
+	}
+})
+//step12事故定责。
