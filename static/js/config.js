@@ -57,7 +57,7 @@ var addBindingCarUrl = host + '/kyp/applogin/currencyController/addBindingCar';
 var editBindingCarUrl = host + '/kyp/applogin/currencyController/editBindingCar';
 
 // 删除绑定机动车信息
-var removeBindingCarUrl = host + 'kyp/applogin/currencyController/removeBindingCar';
+var removeBindingCarUrl = host + '/kyp/applogin/currencyController/removeBindingCar';
 
 /*------------------------------*/
 
